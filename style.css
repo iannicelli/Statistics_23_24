@@ -49,10 +49,12 @@ th, td {
 thead {
     background-color:rgb(130, 23, 41); 
     color: #fff;
+    border-radius: 10px;
 }
 
 tbody tr:nth-child(even) {
     background-color: #f2f2f2;
+    border-radius: 10px;
 }
 
 /* Personalizza ulteriormente il tuo design con altri stili CSS secondo le tue preferenze. */
