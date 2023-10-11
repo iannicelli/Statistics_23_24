@@ -5,6 +5,22 @@ body {
     padding: 0;
 }
 
+button {
+    background-color: rgb(130, 23, 41);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s; /* Aggiunge una transizione fluida al cambiamento di colore di sfondo */
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #5f0f1e; /* Tonalità più scura al passaggio del mouse */
+}
+
 header {
     background-color: rgb(130, 23, 41);
     color: #fff;
@@ -25,6 +41,7 @@ h1 {
     font-size: 36px;
     margin-top: 0;
     margin-left: 30px;
+    margin-right: 30px;
 }
 
 h2 {
@@ -73,4 +90,14 @@ tbody tr:nth-child(even) {
     .left-image {
         margin-right: 0; /* Rimuovi il margine destro per l'immagine */
     }
+}
+
+p {
+    margin-left: 150px; /* Aggiunge spazio a sinistra */
+    margin-right: 150px; /* Aggiunge spazio a destra */
+}
+
+ul{
+    margin-right: 150px; /* Aggiunge spazio a destra */ 
+    margin-left: 100px;
 }

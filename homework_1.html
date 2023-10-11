@@ -20,47 +20,60 @@
         footer div {
             display: inline-block; /* Posiziona gli elementi div in linea */
             margin-right: 20px; /* Aggiungi spazio tra gli elementi a sinistra */
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         select {
             background-color: rgb(130, 23, 41);
             color: #fff;
             border: none;
-            margin-top: 10px;
+            margin-top: 5px;
         }
     </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Contenuto principale della pagina -->
 
-    <footer style="padding: 20px 0;">
-        <div>
-            <img src="photo1697031896.jpeg" style="width: 147px; height: 60px;">
-            <span style="margin-right: 20px;">Statistics 2023/2024</span>
-            <span  style="margin-right: 100px;">Chiara Iannicelli 1957045</span>
-        </div>
-        <div>
-            <label for="homework">Homework:</label>
-            <select id="homework">
-                <option value="homework_1.html">Homework 1</option>
-                <option value="homework_2.html">Homework 2</option>
-                <option value="homework_3.html">Homework 3</option>
-            </select>
-    
-            <script>
-                document.getElementById('homework').addEventListener('change', function() {
-                    var selectedOption = this.value; // Ottieni il valore selezionato nel menu a tendina
-                    if (selectedOption) {
-                        window.location.href = selectedOption; // Reindirizza l'utente alla pagina selezionata
-                    }
-                });
-            </script>
-        </div>
-    </footer>
-    
+    <footer style="padding: 10px 0;">
+    <div>
+        <img src="photo1697031896.jpeg" style="width: 110px; height: 45px;">
 
-    <h1>What is Statistics and its relationship with other disciplines. Difference between Descriptive and Inferential Statistics.</h1>
+        <a href="index.html">
+            <button>Home</button>
+        </a>
+    
+        <span style="line-height: 45px; margin-left: 30px; margin-right: 30px;">Statistics 2023/2024</span>
+        <span style="line-height: 45px; margin-right: 100px;">Chiara Iannicelli 1957045</span>
+    </div>
+    <div>
+        <label for="homework">Homework:</label>
+        <select id="homework">
+            <option value="homework_1.html">Homework 1</option>
+            <option value="homework_2.html">Homework 2</option>
+            <option value="homework_3.html">Homework 3</option>
+        </select>
+
+        <script>
+            document.getElementById('homework').addEventListener('change', function() {
+                var selectedOption = this.value; // Ottieni il valore selezionato nel menu a tendina
+                if (selectedOption) {
+                    window.location.href = selectedOption; // Reindirizza l'utente alla pagina selezionata
+                }
+            });
+        </script>
+    </div>
+    <div>
+        <a href="sources.html">
+            <button>Sources</button>
+        </a>
+    </div>
+</footer>
+
+    
+    
+    <!--Prima domanda-->
+    <h2>What is Statistics and its relationship with other disciplines. Difference between Descriptive and Inferential Statistics.</h2>
 
     <p>
         Statistics is the science of collecting, organizing, analyzing, and interpreting data to make decisions and draw conclusions. Statistics has many applications in various disciplines, such as natural and social sciences, engineering, business, medicine, education, and more. Statistics helps us to understand the world better by using data to answer questions and solve problems.
@@ -78,6 +91,254 @@
         On the other hand, suppose we want to describe the distribution of heights among the 100 adult males in our sample. We can use descriptive statistics to calculate the mean, median, mode, range, standard deviation, skewness, and kurtosis of the sample data. We can also use graphs such as histograms, boxplots, or stem-and-leaf plots to visualize the shape and spread of the data. These descriptive statistics help us to understand the characteristics of our sample data more clearly.
     </p>
 
+    <!--Seconda domanda-->
+    <h2>
+        Describe the concepts of Population, Sample Attribute, Variable, Level of measurement and Dataset.
+    </h2>
+    <ul>
+        <li><strong>Population:</strong> A population is the entire group of people or objects that you want to study or draw conclusions about. For example, if you want to know the average height of adult males in Italy, your population is all adult males in Italy.       </li>
+        <br>
+        <li><strong>Sample:</strong> A sample is a subset of the population that you actually collect data from. Usually, it is not possible or practical to measure every member of the population, so you use a sample to make estimates or generalizations about the population. For example, if you measure the heights of 100 randomly selected adult males in Italy, your sample is those 100 individuals.        </li>
+        <br>
+        <li><strong>Attribute:</strong>  An attribute is a characteristic or feature of a person or object that can be observed or measured. For example, height, weight, gender, color, and temperature are attributes. Attributes can also be called variables.        </li>
+        <br>
+        <li><strong>Variable:</strong> A variable is an attribute that can take on different values across the population or sample. For example, height is a variable because it varies from person to person. Variables can be classified into different types based on their nature and level of measurement.        </li>
+        <br>
+        <li><strong>Level of measurement:</strong>The level of measurement of a variable tells you how precisely the variable is recorded and what statistical methods can be applied to it. There are four levels of measurement: nominal, ordinal, interval, and ratio. Nominal variables are categorical and have no order (e.g., gender, ethnicity). Ordinal variables are categorical and have an order (e.g., education level, satisfaction rating). Interval variables are numerical and have equal intervals but no true zero point (e.g., temperature, IQ score). Ratio variables are numerical and have equal intervals and a true zero point (e.g., height, weight).        </li>
+        <br>
+        <li><strong>Dataset:</strong> A dataset is a collection of data that has been organized in a structured way. Usually, a dataset consists of rows and columns, where each row represents an observation (a person or object) and each column represents a variable (an attribute). For example, a dataset of students’ grades might have rows for each student and columns for their name, ID number, course, and grade. Datasets can be stored in various formats, such as Excel files, CSV files, or databases.        </li>
+    </ul>
 
-</body>
+    <h2>Briefly describe the main sampling methods</h2>
+
+    <p>The  main sampling methods are:</p>
+
+
+    <ul>
+        <li><strong>Probability sampling:</strong> This is a type of sampling that involves random selection of elements from the population, meaning that every element has a known and equal chance of being selected. Probability sampling allows us to make statistical inferences about the population with a high level of confidence. There are four main types of probability sampling:
+            <br>
+            <br>
+            <ul>
+                <li>
+                    Simple random sampling: This is the simplest and most basic form of probability sampling, where we randomly select elements from the population without any grouping or ordering. For example, we can use a random number generator or a lottery system to choose the elements.                
+                </li>
+                <br>
+                <li>
+                    Stratified random sampling: This is a type of sampling where we divide the population into homogeneous groups (called strata) based on some relevant characteristic, such as age, gender, or location. Then we randomly select elements from each group proportional to their size in the population. For example, we can split the population of students into groups by grade level and then randomly select some students from each grade.                
+                </li>
+                <br>
+                <li>
+                    Cluster random sampling: This is a type of sampling where we divide the population into heterogeneous groups (called clusters) that are geographically or administratively defined, such as regions, districts, or schools. Then we randomly select some of the clusters and include all elements from those clusters in the sample. For example, we can randomly select some schools from a city and survey all students in those schools.               
+                </li>
+                <br>
+                <li>
+                    Systematic random sampling: This is a type of sampling where we arrange the population in some order (such as alphabetical or numerical) and then select every nth element from a random starting point. For example, we can order the population of customers by their ID number and then select every 10th customer starting from a random number.                
+                </li>
+                <br>
+            </ul>
+        </li>
+        <li><strong>Non-probability sampling:</strong> This is a type of sampling that involves non-random selection of elements from the population, meaning that some elements have a higher or lower chance of being selected than others. Non-probability sampling does not allow us to make statistical inferences about the population with a high level of confidence, but it can be useful for exploratory or qualitative research. There are four main types of non-probability sampling:        
+            <br>
+            <br>
+            <ul>
+                <li>
+                    Convenience sampling: This is the easiest and most accessible form of non-probability sampling, where we select elements from the population that are readily available or convenient to reach. For example, we can survey people who walk by on the street or who visit a certain website.               
+                </li>
+                <br>
+                <li>
+                    Purposive sampling: This is a type of sampling where we select elements from the population based on a specific purpose or criterion that is relevant to our research question. For example, we can select experts or key informants who have specialized knowledge or experience on the topic.    
+                </li>
+                <br>
+                <li>
+                    Purposive sampling: This is a type of sampling where we select elements from the population based on a specific purpose or criterion that is relevant to our research question. For example, we can select experts or key informants who have specialized knowledge or experience on the topic.
+                </li>
+                <br>
+                <li>
+                    Quota sampling: This is a type of sampling where we divide the population into groups based on some relevant characteristic, such as age, gender, or location. Then we select elements from each group until we reach a predetermined quota or number for each group. For example, we can decide to survey 50 men and 50 women from each region.
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <!--Terza domanda-->
+    <h2>Briefly describe the main experiment designs</h2>
+    <p>The main experiment designs are:</p>
+    <ul>
+        <li><strong>Independent measures design:</strong> This is a type of experiment where different participants are used in each condition of the independent variable. For example, if you want to compare the effects of two drugs on memory, you can randomly assign half of the participants to receive drug A and the other half to receive drug B, and then measure their memory performance. This design avoids order effects, but it requires more participants and it may be affected by individual differences between the groups1.
+        </li>
+        <br>
+        <li><strong>Repeated measures design:</strong> This is a type of experiment where the same participants participate in each condition of the independent variable. For example, if you want to compare the effects of two drugs on memory, you can give each participant both drug A and drug B in a random order, and then measure their memory performance after each drug. This design reduces individual differences, but it may cause order effects, such as practice or fatigue1.
+        </li>
+        <br>
+        <li><strong>Matched pairs design:</strong> This is a type of experiment where pairs of participants who are similar on some relevant characteristic are matched and then assigned to different conditions of the independent variable. For example, if you want to compare the effects of two drugs on memory, you can match pairs of participants based on their age, gender, and IQ, and then randomly assign one member of each pair to receive drug A and the other to receive drug B, and then measure their memory performance. This design tries to balance the advantages and disadvantages of the previous two designs1.
+        </li>
+    </ul>
+
+    <h2>Write a program in C# that creates a window containing a single line, point, circle, rectangle</h2>
+    
+    <pre><code>
+
+        using System;
+        using System.Drawing;
+        using System.Windows.Forms;
+        
+        class DrawingForm : Form
+        {
+            public DrawingForm()
+            {
+                // Set the title of the window
+                Text = "Drawing Shapes";
+        
+                // Set the size of the window
+                ClientSize = new Size(400, 400);
+            }
+        
+            protected override void OnPaint(PaintEventArgs e)
+            {
+                base.OnPaint(e);
+                Graphics g = e.Graphics;
+        
+                // Create a Pen for drawing shapes
+                Pen pen = new Pen(Color.Black);
+        
+                // Draw a line
+                g.DrawLine(pen, 50, 50, 200, 50);
+        
+                // Draw a point
+                g.FillEllipse(Brushes.Red, 100, 100, 5, 5);
+        
+                // Draw a circle
+                g.DrawEllipse(pen, 150, 150, 100, 100);
+        
+                // Draw a rectangle
+                g.DrawRectangle(pen, 50, 200, 150, 100);
+        
+                // Dispose of the Pen
+                pen.Dispose();
+            }
+        
+            public static void Main()
+            {
+                Application.Run(new DrawingForm());
+            }
+        }
+        <head>
+            <title>Canvas Drawing</title>
+        </head>
+        <body>
+            <iframe srcdoc='
+                <html>
+                <head>
+                    <title>Canvas Drawing</title>
+                </head>
+                <body>
+                    <canvas id="myCanvas" width="400" height="400"></canvas>
+                    <script>
+                        // Get a reference to the canvas element
+                        var canvas = document.getElementById("myCanvas");
+                        var context = canvas.getContext("2d");
+        
+                        // Draw a line
+                        context.beginPath();
+                        context.moveTo(50, 50);
+                        context.lineTo(200, 50);
+                        context.strokeStyle = "black";
+                        context.stroke();
+        
+                        // Draw a point
+                        context.beginPath();
+                        context.arc(100, 100, 3, 0, 2 * Math.PI, false);
+                        context.fillStyle = "red";
+                        context.fill();
+        
+                        // Draw a circle
+                        context.beginPath();
+                        context.arc(150, 150, 50, 0, 2 * Math.PI, false);
+                        context.strokeStyle = "blue";
+                        context.stroke();
+        
+                        // Draw a rectangle
+                        context.beginPath();
+                        context.rect(50, 200, 150, 100);
+                        context.strokeStyle = "green";
+                        context.stroke();
+                    </script>
+                </body>
+                </html>
+            ' style="border: none; width: 400px; height: 400px;"></iframe>
+        </body>
+                    </code></pre>
+
+                    <h2>Write a program in JavaScript that creates a window containing a single line, point, circle, rectangle.</h2>
+                             
+        </ol>
+                    <pre><code>
+            <pre>
+                <code>
+                    // Get a reference to the canvas element
+                    var canvas = document.getElementById("myCanvas");
+                    var context = canvas.getContext("2d");
+        
+                    // Draw a line
+                    context.beginPath();
+                    context.moveTo(50, 50);
+                    context.lineTo(200, 50);
+                    context.strokeStyle = "black";
+                    context.stroke();
+        
+                    // Draw a point
+                    context.beginPath();
+                    context.arc(100, 100, 3, 0, 2 * Math.PI, false);
+                    context.fillStyle = "red";
+                    context.fill();
+        
+                    // Draw a circle
+                    context.beginPath();
+                    context.arc(150, 150, 50, 0, 2 * Math.PI, false);
+                    context.strokeStyle = "blue";
+                    context.stroke();
+        
+                    // Draw a rectangle
+                    context.beginPath();
+                    context.rect(50, 200, 150, 100);
+                    context.strokeStyle = "green";
+                    context.stroke();
+                </code>
+            </pre>
+        <head>
+            <title>Canvas Drawing</title>
+        </head>
+        <body>
+            <canvas id="myCanvas" width="400" height="400"></canvas>
+            <script>
+                // Get a reference to the canvas element
+                var canvas = document.getElementById("myCanvas");
+                var context = canvas.getContext("2d");
+        
+                // Draw a line
+                context.beginPath();
+                context.moveTo(50, 50);
+                context.lineTo(200, 50);
+                context.strokeStyle = "black";
+                context.stroke();
+        
+                // Draw a point
+                context.beginPath();
+                context.arc(100, 100, 3, 0, 2 * Math.PI, false);
+                context.fillStyle = "red";
+                context.fill();
+        
+                // Draw a circle
+                context.beginPath();
+                context.arc(150, 150, 50, 0, 2 * Math.PI, false);
+                context.strokeStyle = "blue";
+                context.stroke();
+        
+                // Draw a rectangle
+                context.beginPath();
+                context.rect(50, 200, 150, 100);
+                context.strokeStyle = "green";
+                context.stroke();
+            </script>
+        </body>
 </html>
