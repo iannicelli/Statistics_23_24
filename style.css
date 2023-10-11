@@ -6,7 +6,7 @@ body {
 }
 
 header {
-    background-color: #b52036;
+    background-color: rgb(130, 36, 51); 
     color: #fff;
     text-align: center;
     padding: 20px;
@@ -34,7 +34,7 @@ th, td {
 }
 
 thead {
-    background-color: #3498db;
+    background-color:rgb(130, 36, 51); 
     color: #fff;
 }
 
