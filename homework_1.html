@@ -20,12 +20,14 @@
         footer div {
             display: inline-block; /* Posiziona gli elementi div in linea */
             margin-right: 20px; /* Aggiungi spazio tra gli elementi a sinistra */
+            margin-top: 10px;
         }
 
         select {
             background-color: rgb(130, 23, 41);
             color: #fff;
             border: none;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -41,11 +43,40 @@
         <div>
             <label for="homework">Homework:</label>
             <select id="homework">
-                <option value="Opzione_1">Homework 1</option>
-                <option value="Opzione_2">Homework 2</option>
-                <option value="Opzione_3">Homework 3</option>
+                <option value="homework_1.html">Homework 1</option>
+                <option value="homework_2.html">Homework 2</option>
+                <option value="homework_3.html">Homework 3</option>
             </select>
+
+            <script>
+                document.getElementById('homework').addEventListener('change', function() {
+                    var selectedOption = this.value; // Ottieni il valore selezionato nel menu a tendina
+                    if (selectedOption) {
+                        window.location.href = selectedOption; // Reindirizza l'utente alla pagina selezionata
+                    }
+                });
+            </script>
         </div>
     </footer>
+
+    <h1>What is Statistics and its relationship with other disciplines. Difference between Descriptive and Inferential Statistics.</h1>
+
+    <p>
+        Statistics is the science of collecting, organizing, analyzing, and interpreting data to make decisions and draw conclusions. Statistics has many applications in various disciplines, such as natural and social sciences, engineering, business, medicine, education, and more. Statistics helps us to understand the world better by using data to answer questions and solve problems.
+    </p>
+
+    <p>
+        There are two main branches of statistics: descriptive and inferential. Descriptive statistics summarize and display the characteristics of a data set using measures of central tendency, dispersion, skewness, graphs, and tables. Descriptive statistics help us to understand a specific group of data more easily and quickly. Inferential statistics use a sample of data to make generalizations or predictions about a larger population. Inferential statistics help us to test hypotheses and estimate the effects of variables using methods such as confidence intervals, hypothesis testing, regression, and ANOVA.
+    </p>
+
+    <p>
+        For example, suppose we want to know the average height of adult males in Italy. We cannot measure the height of every adult male in Italy, so we use inferential statistics to estimate the population mean based on a sample of data. We collect the heights of 100 randomly selected adult males in Italy and calculate the sample mean and standard deviation. Then we use a confidence interval formula to find an interval that contains the true population mean with a certain level of confidence. This interval gives us an idea of how close our sample mean is to the population mean.
+    </p>
+
+    <p>
+        On the other hand, suppose we want to describe the distribution of heights among the 100 adult males in our sample. We can use descriptive statistics to calculate the mean, median, mode, range, standard deviation, skewness, and kurtosis of the sample data. We can also use graphs such as histograms, boxplots, or stem-and-leaf plots to visualize the shape and spread of the data. These descriptive statistics help us to understand the characteristics of our sample data more clearly.
+    </p>
+
+
 </body>
 </html>
