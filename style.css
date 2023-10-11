@@ -11,12 +11,14 @@ header {
     text-align: center;
     padding: 20px;
     display: flex;
+    flex-wrap: wrap; /* Consente al contenuto di andare a capo in un display flessibile */
     align-items: center;
 }
 
 .left-image {
     margin-right: 20px;
-    align-self: flex-start; 
+    align-self: flex-start;
+    max-width: 100%; /* Imposta una larghezza massima per l'immagine in modo che non superi il contenitore */
 }
 
 h1 {
@@ -27,12 +29,12 @@ h1 {
 
 h2 {
     font-size: 24px;
-    margin-top: 0; 
+    margin-top: 0;
     margin-left: 80px;
 }
 
 table {
-    width: 80%;
+    width: 100%; /* Fai espandere la tabella al 100% del contenitore padre */
     margin: 20px auto;
     border-collapse: collapse;
     background-color: #fff;
@@ -45,10 +47,30 @@ th, td {
 }
 
 thead {
-    background-color:rgb(130, 23, 41); 
+    background-color: rgb(130, 23, 41);
     color: #fff;
 }
 
 tbody tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+
+/* Media query per schermi di larghezza massima di 768px (ad esempio, dispositivi mobili) */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Imposta il layout su colonna */
+        text-align: left;
+    }
+
+    h1 {
+        margin-left: 0; /* Rimuovi il margine sinistro per h1 */
+    }
+
+    h2 {
+        margin-left: 0; /* Rimuovi il margine sinistro per h2 */
+    }
+
+    .left-image {
+        margin-right: 0; /* Rimuovi il margine destro per l'immagine */
+    }
 }
