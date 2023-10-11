@@ -34,7 +34,7 @@ h2 {
 }
 
 table {
-    width: 100%; /* Fai espandere la tabella al 100% del contenitore padre */
+    width: 80%; /* Fai espandere la tabella al 100% del contenitore padre */
     margin: 20px auto;
     border-collapse: collapse;
     background-color: #fff;
