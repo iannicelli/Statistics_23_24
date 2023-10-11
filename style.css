@@ -34,13 +34,14 @@ h2 {
 table {
     width: 80%;
     margin: 20px auto;
+    border-collapse: collapse;
     background-color: #fff;
 }
 
-table {
-    width: 80%;
-    margin: 20px auto;
-    background-color: #fff;
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
 }
 
 thead {
