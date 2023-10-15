@@ -46,11 +46,4 @@ document.getElementById("circleButton").addEventListener("click", drawCircle);
 document.getElementById("rectangleButton").addEventListener("click", drawRectangle);
 document.getElementById("resetButton").addEventListener("click", clearCanvas);
 
-// Aggiungi un gestore di eventi per il pulsante "Mostra Codice"
-document.getElementById("showCodeButton").addEventListener("click", function() {
 
-    var codeURL = 'URL_DEL_TUO_CODICE';
-    
-    // Apri l'URL in una nuova scheda o finestra del browser
-    window.open(codeURL, '_blank');
-});

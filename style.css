@@ -101,3 +101,9 @@ ul{
     margin-right: 150px; /* Aggiunge spazio a destra */ 
     margin-left: 100px;
 }
+
+.centered {
+    display: block; /* Imposta come blocco per centrare orizzontalmente */
+    text-align: center; /* Allinea il testo al centro */
+    margin: 0 auto; /* Imposta margini laterali automatici per centrare orizzontalmente */
+  }
