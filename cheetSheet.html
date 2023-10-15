@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Collegamento ai file CSS di Prism.js -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+    
+
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        footer {
+            background-color: rgb(130, 23, 41);
+            color: #fff;
+            padding: 10px; /* Aggiungi spazio intorno ai contenuti del footer */
+        }
+
+        footer div {
+            display: inline-block; /* Posiziona gli elementi div in linea */
+            margin-right: 20px; /* Aggiungi spazio tra gli elementi a sinistra */
+            margin-top: 5px;
+        }
+
+        select {
+            background-color: rgb(130, 23, 41);
+            color: #fff;
+            border: none;
+            margin-top: 5px;
+        }
+
+        .topic-title {
+            color: rgb(130, 23, 41); /* Cambia il colore dei titoli degli argomenti */
+        }
+
+        .code-box {
+            background-color: #333; /* Sfondo scuro per la box del codice */
+            color: #fff;
+            padding: 10px;
+            margin: 10px 70px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 13px;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css"> <!-- Collegamento al tuo file CSS -->
+    <script>
+        function scrollToTopic(topicId) {
+            var element = document.getElementById(topicId);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    </script>
+</head>
+<body>
+    <footer style="padding: 10px 0;">
+        <div>
+            <img src="photo1697031896.jpeg" style="width: 110px; height: 45px;">
+    
+            <a href="index.html">
+                <button>Home</button>
+            </a>
+        
+            <span style="line-height: 45px; margin-left: 30px; margin-right: 30px;">Statistics 2023/2024</span>
+            <span style="line-height: 45px; margin-right: 100px;">Chiara Iannicelli 1957045</span>
+        </div>
+        <div>
+            <label for="homework">Homework:</label>
+            <select id="homework">
+                <option value="homework_1.html">Homework 1</option>
+                <option value="homework_2.html">Homework 2</option>
+                <option value="homework_3.html">Homework 3</option>
+            </select>
+    
+            <script>
+                document.getElementById('homework').addEventListener('change', function() {
+                    var selectedOption = this.value; // Ottieni il valore selezionato nel menu a tendina
+                    if (selectedOption) {
+                        window.location.href = selectedOption; // Reindirizza l'utente alla pagina selezionata
+                    }
+                });
+            </script>
+        </div>
+        <div>
+            <a href="sources.html">
+                <button>Sources</button>
+            </a>
+        </div>
+    </footer>
+    <br><br>
+    <h1>CheatSheet JavaScript</h1>
+    <br><br>
+    <div class="button-container">
+        <button class="centered-button" onclick="scrollToTopic('Array')">Array</button>
+        <button class="centered-button" onclick="scrollToTopic('Dictionary')">Dictionary</button>
+        <button class="centered-button" onclick="scrollToTopic('SortedList')">Sorted List</button>
+        <button class="centered-button" onclick="scrollToTopic('HashSet')">Hashset</button>
+        <button class="centered-button" onclick="scrollToTopic('SortedSet')">Sorted Set</button>
+        <button class="centered-button" onclick="scrollToTopic('Queue')">Queue</button>
+        <button class="centered-button" onclick="scrollToTopic('Stack')">Stack</button>
+        <button class="centered-button" onclick="scrollToTopic('LinkedList')">Linked List</button>
+    </div>
+    <h2 id="Array" class="topic-title">Array</h2>
+    
+  
+
+    <div class="code-box">
+        <pre>
+            <code class="language-javascript">
+                // Dichiarazione di un array con valori iniziali
+                const numbers = [2, 4, 6, 8, 10];
+    
+                // Iterazione attraverso gli elementi dell'array e stampa i numeri pari
+                console.log("Numeri pari:");
+                for (let i = 0; i < numbers.length; i++) {
+                    if (numbers[i] % 2 === 0) {
+                        console.log(numbers[i]);
+                    }
+                }
+    
+                // Verifica se l'array contiene un numero dispari
+                const containsOdd = numbers.some((num) => num % 2 !== 0);
+                console.log("L'array contiene un numero dispari:", containsOdd);
+    
+                // Modifica tutti i numeri pari aumentandoli di 1
+                for (let i = 0; i < numbers.length; i++) {
+                    if (numbers[i] % 2 === 0) {
+                        numbers[i] += 1;
+                    }
+                }
+    
+                console.log("Array dopo la modifica:", numbers);
+    
+                // Rimuovi tutti i numeri dispari dall'array
+                const filteredNumbers = numbers.filter((num) => num % 2 === 0);
+    
+                console.log("Array dopo la rimozione dei numeri dispari:", filteredNumbers);
+            </code>
+        </pre>
+    </div>
+    <button id="scrollToTopButton" onclick="scrollToTop()" style="position: fixed; right: 20px; bottom: 20px;">Torna all'inizio</button>
+    
+    
+    <h2 id="Dictionary" class="topic-title">Dictionary</h2>
+    <div class="code-box">
+        <pre>
+            <code class="language-javascript">
+                // Creazione di un dizionario (oggetto) con numeri
+                    const grades = {
+                    math: 90,
+                    science: 85,
+                    history: 78,
+                };
+
+                // Estrazione di chiavi e valori
+                const subjectNames = Object.keys(grades);
+                const subjectScores = Object.values(grades);
+
+                console.log('Materie:', subjectNames);
+                console.log('Voti:', subjectScores);
+
+                // Aggiunta di una nuova coppia chiave-valore
+                grades['english'] = 92;
+
+                console.log('Dizionario dei voti dopo l\'aggiunta:', grades);
+
+                // Rimozione di una coppia chiave-valore
+                delete grades.science;
+
+                console.log('Dizionario dei voti dopo la rimozione di "science":', grades);
+
+                // Verifica dell'esistenza di una chiave
+                const keyToCheck = 'math';
+                if (grades.hasOwnProperty(keyToCheck)) {
+                    console.log(`Il dizionario contiene la chiave '${keyToCheck}'.`);
+                } else {
+                    console.log(`Il dizionario non contiene la chiave '${keyToCheck}'.`);
+                }
+
+                // Modifica di un valore
+                const keyToModify = 'history';
+                const newScore = 85;
+
+                if (grades.hasOwnProperty(keyToModify)) {
+                    grades[keyToModify] = newScore;
+                }
+
+                console.log('Dizionario dei voti dopo la modifica:', grades);
+
+                // Utilizzo di un ciclo for-in per iterare attraverso il dizionario
+                console.log('Iterazione attraverso il dizionario con un ciclo for-in:');
+                for (const subject in grades) {
+                    if (grades.hasOwnProperty(subject)) {
+                        const score = grades[subject];
+                        console.log(`Materia: ${subject}, Voto: ${score}`);
+                    }
+                }
+
+
+            </code>
+        </pre>
+    </div>
+       
+    
+    <h2 id="SortedList" class="topic-title">Sorted List</h2>
+    <div class="code-box">
+        <pre>
+            <code class="language-javascript">
+                // Creazione di una lista ordinata (sorted list)
+                const sortedList = [5, 9, 2, 1, 8];
+
+                // Ordina la lista in ordine crescente
+                sortedList.sort((a, b) => a - b);
+
+                // Stampa gli elementi della lista con un ciclo for
+                console.log("Elementi nella lista ordinata:");
+                for (let i = 0; i < sortedList.length; i++) {
+                    console.log(sortedList[i]);
+                }
+
+                // Aggiungi un elemento alla lista mantenendo l'ordinamento con un ciclo for
+                function insertSorted(arr, element) {
+                    for (let i = 0; i < arr.length; i++) {
+                        if (element < arr[i]) {
+                            arr.splice(i, 0, element);
+                            return; // L'elemento è stato inserito, esci dalla funzione
+                        }
+                    }
+
+                // Se si arriva qui, l'elemento è il più grande, quindi aggiungilo alla fine
+                arr.push(element);
+                }
+
+                insertSorted(sortedList, 4); // Aggiunge 4 alla lista in modo ordinato
+
+                // Rimuovi un elemento dalla lista con un ciclo for
+                const elementToRemove = 5;
+                for (let i = 0; i < sortedList.length; i++) {
+                    if (sortedList[i] === elementToRemove) {
+                        sortedList.splice(i, 1);
+                        break; // L'elemento è stato rimosso, esci dal ciclo
+                    }
+                }
+
+                // Cerca un elemento nella lista con un ciclo for
+                const elementToFind = 8;
+                let isElementFound = false;
+                for (let i = 0; i < sortedList.length; i++) {
+                    if (sortedList[i] === elementToFind) {
+                        isElementFound = true;
+                        break; // Elemento trovato, esci dal ciclo
+                    }
+                }
+
+                console.log("Lista ordinata:", sortedList);
+                console.log("Elemento 4 aggiunto:", sortedList);
+                console.log("Elemento 5 rimosso:", sortedList);
+                console.log("Elemento 8 trovato:", isElementFound);
+
+
+            </code>
+        </pre>
+    </div>
+
+    <h2 id="HashSet" class="topic-title">Hashset</h2>
+    <div class="code-box">
+        <pre>
+            <code class="language-javascript">
+                class HashSet {
+                    constructor() {
+                      this.items = {};
+                    }
+                  
+                    add(item) {
+                      this.items[item] = true;
+                    }
+                  
+                    remove(item) {
+                      delete this.items[item];
+                    }
+                  
+                    contains(item) {
+                      return this.items[item] !== undefined;
+                    }
+                  
+                    toArray() {
+                      return Object.keys(this.items);
+                    }
+                  
+                    // Restituisce un nuovo HashSet contenente l'intersezione tra due HashSet
+                    intersection(otherSet) {
+                      const intersectionSet = new HashSet();
+                      const values = this.toArray();
+                      
+                      for (let i = 0; i < values.length; i++) {
+                        if (otherSet.contains(values[i])) {
+                          intersectionSet.add(values[i]);
+                        }
+                      }
+                      
+                      return intersectionSet;
+                    }
+                  
+                    // Restituisce un nuovo HashSet contenente l'unione di due HashSet
+                    union(otherSet) {
+                      const unionSet = new HashSet();
+                      const values = this.toArray();
+                      
+                      for (let i = 0; i < values.length; i++) {
+                        unionSet.add(values[i]);
+                      }
+                  
+                      values = otherSet.toArray();
+                      
+                      for (let i = 0; i < values.length; i++) {
+                        unionSet.add(values[i]);
+                      }
+                  
+                      return unionSet;
+                    }
+                }
+                // Esempio di utilizzo della classe HashSet
+                const myHashSet = new HashSet();
+
+                myHashSet.add('element1');
+                myHashSet.add('element2');
+                myHashSet.add('element3');
+
+                console.log("Contiene 'element2'?", myHashSet.contains('element2'));
+
+                myHashSet.remove('element1');
+
+                console.log("Contiene 'element1' dopo la rimozione?", myHashSet.contains('element1'));
+
+                console.log("Elementi nell'HashSet:", myHashSet.toArray());
+
+                const set1 = new HashSet();
+                set1.add('A');
+                set1.add('B');
+                set1.add('C');
+
+                const set2 = new HashSet();
+                set2.add('B');
+                set2.add('C');
+                set2.add('D');
+
+                console.log("Intersezione:", set1.intersection(set2).toArray());
+                console.log("Unione:", set1.union(set2).toArray());
+
+            </code>
+        </pre>
+    </div>
+    
+    <h2 id="SortedSet" class="topic-title">Sorted Set</h2>
+    <div class="code-box">
+       <pre>
+            <code class="language-javascript">
+                class SortedSet {
+                    constructor() {
+                      this.items = [];
+                    }
+                  
+                    insert(element) {
+                      if (!this.contains(element)) {
+                        this.items.push(element);
+                        this.items.sort((a, b) => a - b);
+                      }
+                    }
+                  
+                    remove(element) {
+                      const index = this.items.indexOf(element);
+                      if (index !== -1) {
+                        this.items.splice(index, 1);
+                      }
+                    }
+                  
+                    contains(element) {
+                      return this.items.includes(element);
+                    }
+                  
+                    size() {
+                      return this.items.length;
+                    }
+                  
+                    toArray() {
+                      return this.items.slice();
+                    }
+                  }
+                  
+                  // Esempio di utilizzo della classe SortedSet
+                  const mySortedSet = new SortedSet();
+                  
+                  mySortedSet.insert(3);
+                  mySortedSet.insert(1);
+                  mySortedSet.insert(4);
+                  mySortedSet.insert(2);
+                  mySortedSet.insert(5);
+                  
+                  console.log("Elementi nell'insieme ordinato:", mySortedSet.toArray()); // Output: [1, 2, 3, 4, 5]
+                  
+                  mySortedSet.remove(3);
+                  console.log("Dopo la rimozione di 3:", mySortedSet.toArray()); // Output: [1, 2, 4, 5]
+                  
+                  const isPresent = mySortedSet.contains(4);
+                  console.log(`È presente 4: ${isPresent}`); // Output: "È presente 4: true"
+                  
+                  console.log(`Dimensione dell'insieme: ${mySortedSet.size()}`); // Output: "Dimensione dell'insieme: 4"
+                  
+
+            </code>
+       </pre>
+    </div>
+    
+    <h2 id="Queue" class="topic-title">Queue</h2>
+    <div class="code-box">
+        <pre>
+            <code class="language-javascript">
+                class Queue {
+                    constructor() {
+                      this.items = [];
+                    }
+                  
+                    enqueue(element) {
+                      this.items.push(element);
+                    }
+                  
+                    dequeue() {
+                      if (this.isEmpty()) {
+                        return "La coda è vuota.";
+                      }
+                      return this.items.shift();
+                    }
+                  
+                    front() {
+                      if (this.isEmpty()) {
+                        return "La coda è vuota.";
+                      }
+                      return this.items[0];
+                    }
+                  
+                    isEmpty() {
+                      return this.items.length === 0;
+                    }
+                  
+                    size() {
+                      return this.items.length;
+                    }
+                  }
+                  
+                  // Esempio di utilizzo della classe Queue
+                  const myQueue = new Queue();
+                  
+                  myQueue.enqueue(1);
+                  myQueue.enqueue(2);
+                  myQueue.enqueue(3);
+                  
+                  console.log("Elemento in testa alla coda:", myQueue.front()); // Output: 1
+                  
+                  myQueue.dequeue();
+                  console.log("Dopo dequeue, elemento in testa alla coda:", myQueue.front()); // Output: 2
+                  
+                  console.log(`La coda è vuota? ${myQueue.isEmpty()}`); // Output: "La coda è vuota? false"
+                  
+                  console.log(`Dimensione della coda: ${myQueue.size()}`); // Output: "Dimensione della coda: 2"
+                  
+
+            </code>
+        </pre>
+    </div>
+    
+    <h2 id="Stack" class="topic-title">Stack</h2>
+    <div class="code-box">
+        <pre>
+            <code class="language-javascript">
+                class Stack {
+                    constructor() {
+                      this.items = [];
+                    }
+                  
+                    push(element) {
+                      this.items.push(element);
+                    }
+                  
+                    pop() {
+                      if (this.isEmpty()) {
+                        return "Lo stack è vuoto.";
+                      }
+                      return this.items.pop();
+                    }
+                  
+                    peek() {
+                      if (this.isEmpty()) {
+                        return "Lo stack è vuoto.";
+                      }
+                      return this.items[this.items.length - 1];
+                    }
+                  
+                    isEmpty() {
+                      return this.items.length === 0;
+                    }
+                  
+                    clear() {
+                      this.items = [];
+                    }
+                  
+                    search(element) {
+                      const index = this.items.indexOf(element);
+                      return index === -1 ? -1 : this.items.length - index;
+                    }
+                  
+                    toArray() {
+                      return this.items.slice().reverse();
+                    }
+                  }
+                  
+                  // Esempi di utilizzo con numeri
+                  const numStack = new Stack();
+                  numStack.push(5);
+                  numStack.push(10);
+                  numStack.push(15);
+                  
+                  console.log("Cima dello stack:", numStack.peek()); // Output: 15
+                  
+                  console.log("Stack prima della pulizia:", numStack.toArray()); // Output: [15, 10, 5]
+                  numStack.clear();
+                  console.log("Stack dopo la pulizia:", numStack.peek()); // Output: "Lo stack è vuoto."
+                  
+                  numStack.push(20);
+                  numStack.push(25);
+                  numStack.push(30);
+                  
+                  console.log("Posizione di 25 nello stack:", numStack.search(25)); // Output: 2
+                  
+                  console.log("Stack come array:", numStack.toArray()); // Output: [30, 25, 20]
+                  
+
+            </code>
+        </pre>
+    </div>
+    
+    <h2 id="LinkedList" class="topic-title">Linked List</h2>
+    <div class="code-box">
+        <pre>
+            <code class="language-javascript">
+                class Node {
+                    constructor(data) {
+                      this.data = data;
+                      this.next = null;
+                    }
+                  }
+                  
+                  class LinkedList {
+                    constructor() {
+                      this.head = null;
+                    }
+                  
+                    append(data) {
+                      const newNode = new Node(data);
+                      if (!this.head) {
+                        this.head = newNode;
+                      } else {
+                        let current = this.head;
+                        while (current.next) {
+                          current = current.next;
+                        }
+                        current.next = newNode;
+                      }
+                    }
+                  
+                    prepend(data) {
+                      const newNode = new Node(data);
+                      newNode.next = this.head;
+                      this.head = newNode;
+                    }
+                  
+                    delete(data) {
+                      if (!this.head) return;
+                      if (this.head.data === data) {
+                        this.head = this.head.next;
+                        return;
+                      }
+                      let current = this.head;
+                      while (current.next) {
+                        if (current.next.data === data) {
+                          current.next = current.next.next;
+                          return;
+                        }
+                        current = current.next;
+                      }
+                    }
+                  
+                    find(data) {
+                      let current = this.head;
+                      while (current) {
+                        if (current.data === data) {
+                          return current;
+                        }
+                        current = current.next;
+                      }
+                      return null;
+                    }
+                  
+                    display() {
+                      let current = this.head;
+                      while (current) {
+                        console.log(current.data);
+                        current = current.next;
+                      }
+                    }
+                  }
+                  
+                  // Esempio di utilizzo della linked list
+                  const myList = new LinkedList();
+                  myList.append(1);
+                  myList.append(2);
+                  myList.append(3);
+                  
+                  myList.prepend(0);
+                  myList.display(); // Output: 0, 1, 2, 3
+                  
+                  myList.delete(2);
+                  myList.display(); // Output: 0, 1, 3
+                  
+                  const foundNode = myList.find(1);
+                  console.log("Nodo trovato:", foundNode ? foundNode.data : "Non trovato"); // Output: Nodo trovato: 1
+                  
+
+            </code>
+        </pre>
+    </div>
+
+        <!-- Collegamento ai file JavaScript di Prism.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+
+    
+    <script>
+        // Funzione per tornare all'inizio della pagina
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth" // Scorrimento fluido
+            });
+        }
+
+        // Aggiungi un ascoltatore per nascondere o mostrare il pulsante in base alla posizione dello schermo
+        window.addEventListener("scroll", function() {
+            var scrollToTopButton = document.getElementById("scrollToTopButton");
+            if (window.scrollY > 300) { // Mostra il pulsante quando la posizione dello schermo è al di sopra di 300 pixel
+                scrollToTopButton.style.display = "block";
+            } else {
+                scrollToTopButton.style.display = "none";
+            }
+        });
+    </script>
+    
+
+</body>
+</html>
+    

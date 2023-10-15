@@ -107,3 +107,25 @@ ul{
     text-align: center; /* Allinea il testo al centro */
     margin: 0 auto; /* Imposta margini laterali automatici per centrare orizzontalmente */
   }
+
+  .button-container {
+    text-align: center;
+}
+
+.centered-button {
+    display: inline-block;
+    margin: 0 10px; /* Aggiunge uno spazio tra i bottoni */
+    background-color: rgb(130, 23, 41);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+}
+
+.centered-button:hover {
+    background-color: #5f0f1e;
+}
