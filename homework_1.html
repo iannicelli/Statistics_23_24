@@ -270,75 +270,19 @@
                     </code></pre>
 
                     <h2>Write a program in JavaScript that creates a window containing a single line, point, circle, rectangle.</h2>
-                             
-        </ol>
-                    <pre><code>
-            <pre>
-                <code>
-                    // Get a reference to the canvas element
-                    var canvas = document.getElementById("myCanvas");
-                    var context = canvas.getContext("2d");
+                    
+                    <canvas id="myCanvas" width="400" height="400"></canvas>
+                    <button id="lineButton">Draw Line</button>
+                    <button id="pointButton">Draw Point</button>
+                    <button id="circleButton">Draw Circle</button>
+                    <button id="rectangleButton">Draw Rectangle</button>
+                    <button id="resetButton">Reset</button>
+                    <script src="script.js"></script>
+                    <br><br><br>
+
+                    <button id="showCodeButton">Mostra Codice</button>
+
+
         
-                    // Draw a line
-                    context.beginPath();
-                    context.moveTo(50, 50);
-                    context.lineTo(200, 50);
-                    context.strokeStyle = "black";
-                    context.stroke();
-        
-                    // Draw a point
-                    context.beginPath();
-                    context.arc(100, 100, 3, 0, 2 * Math.PI, false);
-                    context.fillStyle = "red";
-                    context.fill();
-        
-                    // Draw a circle
-                    context.beginPath();
-                    context.arc(150, 150, 50, 0, 2 * Math.PI, false);
-                    context.strokeStyle = "blue";
-                    context.stroke();
-        
-                    // Draw a rectangle
-                    context.beginPath();
-                    context.rect(50, 200, 150, 100);
-                    context.strokeStyle = "green";
-                    context.stroke();
-                </code>
-            </pre>
-        <head>
-            <title>Canvas Drawing</title>
-        </head>
-        <body>
-            <canvas id="myCanvas" width="400" height="400"></canvas>
-            <script>
-                // Get a reference to the canvas element
-                var canvas = document.getElementById("myCanvas");
-                var context = canvas.getContext("2d");
-        
-                // Draw a line
-                context.beginPath();
-                context.moveTo(50, 50);
-                context.lineTo(200, 50);
-                context.strokeStyle = "black";
-                context.stroke();
-        
-                // Draw a point
-                context.beginPath();
-                context.arc(100, 100, 3, 0, 2 * Math.PI, false);
-                context.fillStyle = "red";
-                context.fill();
-        
-                // Draw a circle
-                context.beginPath();
-                context.arc(150, 150, 50, 0, 2 * Math.PI, false);
-                context.strokeStyle = "blue";
-                context.stroke();
-        
-                // Draw a rectangle
-                context.beginPath();
-                context.rect(50, 200, 150, 100);
-                context.strokeStyle = "green";
-                context.stroke();
-            </script>
         </body>
 </html>
