@@ -249,6 +249,8 @@ function loadExcelFile2() {
         };
 
         reader.readAsArrayBuffer(file);
+
+            
     } else {
         // Prova a caricare i dati salvati in localStorage quando la pagina si carica
         var storedData2 = localStorage.getItem('storedData2');
@@ -258,6 +260,104 @@ function loadExcelFile2() {
             resultsTable3.innerHTML = dataToStore2.tableHTML3;
         }
     }
+
+}
+
+
+function calculateCombinationsCount() {
+    var input = document.getElementById('excel-file-input_2');
+    var file = input.files[0];
+    
+    if (file) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            var data = new Uint8Array(e.target.result);
+            var workbook = XLSX.read(data, { type: 'array' });
+            
+            // Tabella dal file Excel
+            var sheetName = 'Sheet1';
+            var worksheet = workbook.Sheets[sheetName];
+            
+            var columnData1 = XLSX.utils.sheet_to_json(worksheet, { header: 1, raw: false });
+            var backgroundData = columnData1.map(function (row) {
+                return row[1]; // 16 rappresenta la colonna 'Età' 
+            });
+            
+            var columnData2 = XLSX.utils.sheet_to_json(worksheet, { header: 1, raw: false });
+            var ageData = columnData2.map(function (row) {
+                return row[16]; // 16 rappresenta la colonna 'Età' 
+            });
+            
+            // console.log(ageData)
+            
+            // Inizializza un oggetto per tenere traccia delle combinazioni di background ed età
+            var combinationsCount = {};
+            
+            // Ciclo attraverso i dati del file Excel
+            for (var i = 1; i < backgroundData.length; i++) {
+                var background = backgroundData[i]; // 1 rappresenta la colonna 'Background (degree)'
+                var age = ageData[i]; // 16 rappresenta la colonna 'Età'
+                
+                // Crea una chiave unica per rappresentare la combinazione di background ed età
+                var combinationKey = `${background} - ${age}`;
+                
+                // Conta il numero di casi che si presentano per la stessa combinazione di background ed età
+                if (!combinationsCount[combinationKey]) {
+                    combinationsCount[combinationKey] = 1;
+                } else {
+                    combinationsCount[combinationKey]++;
+                }
+            }
+            
+            // Visualizza i risultati in una tabella HTML
+            displayJointDistributionTable(combinationsCount, 'resultsJoint');
+        };
+        
+        reader.readAsArrayBuffer(file);
+    }
+    else {
+        console.log('ciao')
+        var storedData = localStorage.getItem('storedJointData');
+        console.log(storedData)
+        if (storedData) {
+            var dataToStore = JSON.parse(storedData);
+            var table = document.getElementById('resultsJoint').getElementsByTagName('tbody')[0];
+            table.innerHTML = dataToStore.tableHTML;
+        }
+    }
+}
+
+function displayJointDistributionTable(data, tableId) {
+    var table = document.getElementById(tableId);
+    
+    // Cancella il contenuto precedente della tabella
+    table.innerHTML = '';
+    
+    // Aggiungi l'intestazione
+    var headerRow = table.insertRow(0);
+    headerRow.style.backgroundColor = 'rgb(130, 23, 41)';
+    headerRow.style.color = '#fff';
+    var headerCell1 = headerRow.insertCell(0);
+    var headerCell2 = headerRow.insertCell(1);
+    headerCell1.innerHTML = 'Combination';
+    headerCell2.innerHTML = 'Count';
+    
+    // Aggiungi i dati alle righe della tabella
+    var rowIndex = 1;
+    for (var combination in data) {
+        var row = table.insertRow(rowIndex++);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        cell1.innerHTML = combination;
+        cell2.innerHTML = data[combination];
+    }
+    
+    // Salva i dati in localStorage con una chiave univoca
+    var dataToStore = {
+        tableHTML: table.innerHTML,
+    };
+    localStorage.setItem('storedJointData', JSON.stringify(dataToStore));
 }
 
 // Chiama la funzione per caricare i dati quando la pagina si carica
@@ -265,5 +365,5 @@ window.onload = function () {
 
     loadExcelFile2();
     loadExcelFile(); // Chiamare loadExcelFile dopo aver ripristinato i dati dal localStorage
+    calculateCombinationsCount();
 };
-
