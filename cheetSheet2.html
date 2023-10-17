@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Collegamento ai file CSS di Prism.js -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+
+
+    
+
+    <title>cheetSheet2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        footer {
+            background-color: rgb(130, 23, 41);
+            color: #fff;
+            padding: 10px; /* Aggiungi spazio intorno ai contenuti del footer */
+        }
+
+        footer div {
+            display: inline-block; /* Posiziona gli elementi div in linea */
+            margin-right: 20px; /* Aggiungi spazio tra gli elementi a sinistra */
+            margin-top: 5px;
+        }
+
+        select {
+            background-color: rgb(130, 23, 41);
+            color: #fff;
+            border: none;
+            margin-top: 5px;
+        }
+
+        .topic-title {
+            color: rgb(130, 23, 41); /* Cambia il colore dei titoli degli argomenti */
+        }
+
+        .code-box {
+            background-color: #333; /* Sfondo scuro per la box del codice */
+            color: #fff;
+            padding: 10px;
+            margin: 10px 70px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 13px;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css"> <!-- Collegamento al tuo file CSS -->
+    <script>
+        function scrollToTopic(topicId) {
+            var element = document.getElementById(topicId);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    </script>
+</head>
+<body>
+    <footer style="padding: 10px 0;">
+        <div>
+            <img src="photo1697031896.jpeg" style="width: 110px; height: 45px;">
+    
+            <a href="index.html">
+                <button>Home</button>
+            </a>
+        
+            <span style="line-height: 45px; margin-left: 30px; margin-right: 30px;">Statistics 2023/2024</span>
+            <span style="line-height: 45px; margin-right: 100px;">Chiara Iannicelli 1957045</span>
+        </div>
+        <div>
+            <label for="homework">Homework:</label>
+            <select id="homework">
+                <option value="homework_1.html">Homework 1</option>
+                <option value="homework_2.html">Homework 2</option>
+                <option value="homework_3.html">Homework 3</option>
+            </select>
+    
+            <script>
+                document.getElementById('homework').addEventListener('change', function() {
+                    var selectedOption = this.value; // Ottieni il valore selezionato nel menu a tendina
+                    if (selectedOption) {
+                        window.location.href = selectedOption; // Reindirizza l'utente alla pagina selezionata
+                    }
+                });
+            </script>
+        </div>
+        <div>
+            <a href="sources.html">
+                <button>Sources</button>
+            </a>
+        </div>
+    </footer>
+    <br><br>
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-right: 20px;">
+      <h1>CheatSheet C#</h1>
+      <a href="cheetSheet1.html">
+      <button class="centered-button black-button">JavaScript</button>
+      </a>
+  </div>
+    <br><br>
+    <div class="button-container">
+        <button class="centered-button" onclick="scrollToTopic('Array')">Array</button>
+        <button class="centered-button" onclick="scrollToTopic('List')">List</button>
+        <button class="centered-button" onclick="scrollToTopic('Dictionary')">Dictionary</button>
+        <button class="centered-button" onclick="scrollToTopic('SortedList')">Sorted List</button>
+        <button class="centered-button" onclick="scrollToTopic('HashSet')">Hashset</button>
+        <button class="centered-button" onclick="scrollToTopic('SortedSet')">Sorted Set</button>
+        <button class="centered-button" onclick="scrollToTopic('Queue')">Queue</button>
+        <button class="centered-button" onclick="scrollToTopic('Stack')">Stack</button>
+        <button class="centered-button" onclick="scrollToTopic('LinkedList')">Linked List</button>
+    </div>
+    <h2 id="Array" class="topic-title">Array</h2>
+    
+  
+
+    <div class="code-box">
+        <pre>
+            <code class="language-csharp">
+              using System;
+              using System.Collections.Generic;
+              using System.Linq;
+      
+              // ARRAY
+              int[] array;
+              int[] numbers = { 1, 2, 3, 4, 5 };
+              int[] numbers = new int[5]; // Creates an array of 5 integers with default values (0).
+      
+              numbers[2] = 10; // Modifies the third element to be 10.
+      
+              for (int i = 0; i < numbers.Length; i++){  } //loop
+            </code>
+        </pre>
+    </div>
+    <button id="scrollToTopButton" onclick="scrollToTop()" style="position: fixed; right: 20px; bottom: 20px;">Torna all'inizio</button>
+    
+    <h2 id="List" class="topic-title">List</h2>
+    
+    <div class="code-box">
+        <pre>
+            <code class="language-csharp">
+              List list = new List { 1, 2, 3, 4, 5 };
+        
+              foreach (int item in myList){        } //loop
+              
+              myList.Add(value); // add a new element
+              int firstItem = myList[0];  // Retrieves the first item 
+              myList.Remove(value); // Removes the item with a specific value
+              
+              void SetListValue(List list, int index, int newValue)
+              {
+                  if (index >= 0 && index < list.Count)
+                      list[index] = newValue;
+              }
+            </code>
+        </pre>
+    </div>
+
+    <h2 id="Dictionary" class="topic-title">Dictionary</h2>
+    <div class="code-box">
+        <pre>
+            <code class="language-javascript">
+        
+              Dictionary dictionary = new Dictionary
+              {
+                  { "key1", "value1" },
+                  { "key2", "value2" },
+                  { "key3", "value3" }
+              };
+              
+              List keys = dictionary.Keys.ToList(); // extracts all the keys
+              List values = dictionary.Values.ToList(); // extracts all the values
+              List> pairs = dictionary.ToList(); // extracts all the key-value pairs
+              
+              foreach (var pair in dictionary) // loop
+              {
+                  string key = pair.Key;
+                  string value = pair.Value;
+              }
+              
+              dictionary["newKey"] = "newValue"; // To add key-value pairs
+              dictionary.Remove("key2"); // Removes 'key2' and its associated value
+              bool valueExists = dictionary.TryGetValue("key2", out string value); // Retrieves 'value2'
+              
+              bool keyExists = dictionary.ContainsKey("key2"); // Check if 'key2' exists in the dictionary
+              
+              void SetValueDictionary(Dictionary dict, string key, string newValue)
+              {
+                  if (dict.ContainsKey(key))
+                      dict[key] = newValue;
+              }
+              
+          
+            </code>
+        </pre>
+    </div>
+       
+    
+    <h2 id="SortedList" class="topic-title">Sorted List</h2>
+    <div class="code-box">
+        <pre>
+            <code class="language-javascript">
+        
+              SortedList my_slist = new SortedList();
+
+              list.Remove(oldValue); //remove a specific value
+              my_slist.RemoveAt(2);  // Remove element at index 2
+              list.Add(newValue); //add a specific value
+              list.Contains(Value) //check if a specific value exists in the sortedlist
+              
+              foreach (int item in sortedList){} //loop
+              
+              void SetSortedListValue(SortedList list, int oldValue, int newValue) //set a value
+              {
+                  if (list.Contains(oldValue))
+                  {
+                      list.Remove(oldValue);
+                      list.Add(newValue);
+                  }
+              }
+              
+          
+            </code>
+        </pre>
+    </div>
+
+    <h2 id="HashSet" class="topic-title">Hashset</h2>
+    <div class="code-box">
+        <pre>
+            <code class="language-javascript">
+              HashSet hashSet = new HashSet();
+
+              hashset.Add(value) //add a specific value
+              hashset.Remove(value); // remove element with a specific value
+              hashset.Contains(value); //can check if an element exists
+              
+              foreach (int number in numbers) {        } //loop
+              
+              void SetHashSetValue(HashSet set, int oldValue, int newValue) //set
+              {
+                  if (set.Contains(oldValue))
+                  {
+                      set.Remove(oldValue);
+                      set.Add(newValue);
+                  }
+              }
+
+            </code>
+        </pre>
+    </div>
+    
+    <h2 id="SortedSet" class="topic-title">Sorted Set</h2>
+    <div class="code-box">
+       <pre>
+            <code class="language-javascript">
+              SortedSet sortedSet = new SortedSet();
+
+              sortedSet.Add(value) //add a specific value
+              sortedSet.Remove(value); // remove element with a specific value
+              sortedSet.Clear(); // remove all elements
+              
+              void SetSortedSetValue(SortedSet set, int oldValue, int newValue) //set a new value
+              {
+                  if (set.Contains(oldValue))
+                  {
+                      set.Remove(oldValue);
+                      set.Add(newValue);
+                  }
+              }
+            </code>
+       </pre>
+    </div>
+    
+    <h2 id="Queue" class="topic-title">Queue</h2>
+    <div class="code-box">
+        <pre>
+          Queue queue = new Queue();
+
+          myQueue.Enqueue(item); //add an item to the end of the queue
+          item = myQueue.Dequeue(); // remove and return the item at the front of the queue
+          frontItem = myQueue.Peek(); //get the item at the front of the queue
+          myQueue.Clear(); // clear all items from the queue
+          
+          foreach (T item in myQueue){ } // loop
+          
+          
+          void SetQueueValue(Queue q, int oldValue, int newValue) // set a new value
+          {
+              int[] items = q.ToArray();
+              for (int i = 0; i < items.Length; i++)
+              {
+                  if (items[i] == oldValue)
+                  {
+                      items[i] = newValue;
+                      q.Clear();
+                      foreach (var item in items)
+                          q.Enqueue(item);
+                      break;
+                  }
+              }
+          }
+            </code>
+        </pre>
+    </div>
+    
+    <h2 id="Stack" class="topic-title">Stack</h2>
+    <div class="code-box">
+        <pre>
+            <code class="language-javascript">
+              Stack stack = new Stack();
+
+              stack.Push(value); //add elements to the stack
+              int element = stack.Pop(); //remove and retrieve the top element from the stack
+              int topElement = stack.Peek(); // get the top element without removing it
+              stack.Clear(); //  remove all elements from the stack
+              
+              foreach (int item in numberStack){ } //loop
+              
+              void SetStackValue(Stack s, int oldValue, int newValue) // set a new element
+              {
+                  int[] items = s.ToArray();
+                  for (int i = 0; i < items.Length; i++)
+                  {
+                      if (items[i] == oldValue)
+                      {
+                          items[i] = newValue;
+                          s.Clear();
+                          foreach (var item in items)
+                              s.Push(item);
+                          break;
+                      }
+                  }
+              }
+              
+            </code>
+        </pre>
+    </div>
+    
+    <h2 id="LinkedList" class="topic-title">Linked List</h2>
+    <div class="code-box">
+        <pre>
+            <code class="language-javascript">
+              LinkedList linkedList = new LinkedList();
+
+              linkedList.AddLast(value); //add element at the end of linked list
+              linkedList.AddFirst(value); //add element at the begin of linked list
+              LinkedListNode newNode = linkedList.AddAfter(node, value); // insert the value after the node
+              
+              linkedList.RemoveLast(); //remove element at the end of linked list
+              linkedList.RemoveFirst(); //remove element at the begin of linked list
+              linkedList.Remove(value); //remove a specific element
+              
+              bool containsValue = linkedList.Contains(value); //check if an element is in the list
+              
+              foreach (int value in linkedList){ } //loop
+              
+              void SetLinkedListValue(LinkedList list, int oldValue, int newValue) //set a new value
+              {
+                  var currentNode = list.First;
+                  while (currentNode != null)
+                  {
+                      if (currentNode.Value == oldValue)
+                      {
+                          currentNode.Value = newValue;
+                          break;
+                      }
+                      currentNode = currentNode.Next;
+                  }
+              }
+
+            </code>
+        </pre>
+    </div>
+
+        <!-- Collegamento ai file JavaScript di Prism.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+
+    
+    <script>
+        // Funzione per tornare all'inizio della pagina
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth" // Scorrimento fluido
+            });
+        }
+
+        // Aggiungi un ascoltatore per nascondere o mostrare il pulsante in base alla posizione dello schermo
+        window.addEventListener("scroll", function() {
+            var scrollToTopButton = document.getElementById("scrollToTopButton");
+            if (window.scrollY > 300) { // Mostra il pulsante quando la posizione dello schermo è al di sopra di 300 pixel
+                scrollToTopButton.style.display = "block";
+            } else {
+                scrollToTopButton.style.display = "none";
+            }
+        });
+    </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+
+    
+
+</body>
+</html>
+    
