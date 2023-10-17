@@ -132,7 +132,6 @@ class Program
                     }
                 }
 
-                // Ora puoi eseguire ulteriori calcoli o query sul database SQLite se necessario
             }
         }
     }
