@@ -29,48 +29,69 @@
             border: none;
             margin-top: 5px;
         }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
     </style>
     <link rel="stylesheet" href="./../style.css">
     <script src="excel-reader.js"></script>
 </head>
 <body>
     <!-- Contenuto principale della pagina -->
-
     <footer style="padding: 10px 0;">
     <div>
         <img src="./../photo1697031896.jpeg" style="width: 110px; height: 45px;">
-
         <a href="./../index.html">
             <button>Home</button>
         </a>
-    
         <span style="line-height: 45px; margin-left: 30px; margin-right: 30px;">Statistics 2023/2024</span>
         <span style="line-height: 45px; margin-right: 100px;">Chiara Iannicelli 1957045</span>
     </div>
+    </footer>
 
-</footer>
+    <h1>Homework 2.1</h1>
+    <p>
+        Choose 3 variables from our surveys: <br>
+        - one Qualitative <br>
+        - one Quantitative discrete <br>
+        - one Quantitative continuous (use class intervals in this case, obviously) <br>
+    </p>
+    <p>
+        Create the most efficient algorithms to compute the frequency (absolute/relative/percentage) distribution of: <br>
+        - the 3 variables <br>
+        - the joint distribution of 2 variables (use a general logic, where variables could be any number). <br>
+    </p>
+    <input type="file" id="excel-file-input" accept=".xlsx" style="display: none;">
+    <button onclick="loadExcelFile(); loadExcelFile2();" style="display: none;">Carica File Excel</button>
+    
 
-<h1>Homework 2.1</h1>
-<p>
-    Choose 3 variables from our surveys: <br>
+  <table id="results1">
+    <tbody>
 
-- one Qualitative <br>
-- one Quantitative discrete <br>
-- one Quantitative continuous (use class intervals in this case, obviously) <br>
-</p>
-<p>
-Create the most efficient algorithms to compute the frequency (absolute/relative/percentage) distribution of: <br>
-
-- the 3 variables <br>
-- the joint distribution of 2 variables (use a general logic, where variables could be any number). <br>
-</p>
-
-<input type="file" id="excel-file-input" accept=".xlsx">
-<button onclick="loadExcelFile()">Carica File Excel</button>
+    </tbody>
+</table>
+<table id="results2">
+    <tbody></tbody>
+</table>
+<table id="result3">
+    <tbody></tbody>
+</table>
 
 
+<a href=""><button class="centered">Mostra Codice</button></a>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.8/xlsx.full.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.8/xlsx.full.min.js"></script>
 </body>
 </html>

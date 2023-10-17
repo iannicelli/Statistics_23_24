@@ -72,6 +72,12 @@ tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
+.table-header {
+    background-color: rgb(130, 23, 41);
+    color: #fff;
+}
+
+
 /* Media query per schermi di larghezza massima di 768px (ad esempio, dispositivi mobili) */
 @media (max-width: 768px) {
     header {
