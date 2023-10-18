@@ -289,7 +289,6 @@ function calculateCombinationsCount() {
                 return row[16]; // 16 rappresenta la colonna 'Età' 
             });
             
-            // console.log(ageData)
             
             // Inizializza un oggetto per tenere traccia delle combinazioni di background ed età
             var combinationsCount = {};
@@ -317,7 +316,6 @@ function calculateCombinationsCount() {
         reader.readAsArrayBuffer(file);
     }
     else {
-        console.log('ciao')
         var storedData = localStorage.getItem('storedJointData');
         console.log(storedData)
         if (storedData) {

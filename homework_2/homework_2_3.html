@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 2.3</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        footer {
+            background-color: rgb(130, 23, 41);
+            color: #fff;
+            padding: 10px; /* Aggiungi spazio intorno ai contenuti del footer */
+        }
+
+        footer div {
+            display: inline-block; /* Posiziona gli elementi div in linea */
+            margin-right: 20px; /* Aggiungi spazio tra gli elementi a sinistra */
+            margin-top: 5px;
+        }
+
+        select {
+            background-color: rgb(130, 23, 41);
+            color: #fff;
+            border: none;
+            margin-top: 5px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        .code-box {
+            background-color: #333; /* Sfondo scuro per la box del codice */
+            color: #fff;
+            padding: 10px;
+            margin: 10px 70px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 13px;
+        }
+    </style>
+    <link rel="stylesheet" href="./../style.css">
+    <script src="2_3.js"></script>
+</head>
+<body>
+    <!-- Contenuto principale della pagina -->
+    <footer style="padding: 10px 0;">
+        <div>
+            <img src="./../photo1697031896.jpeg" style="width: 110px; height: 45px;">
+            <a href="./../index.html">
+                <button>Home</button>
+            </a>
+            <span style="line-height: 45px; margin-left: 30px; margin-right: 30px;">Statistics 2023/2024</span>
+            <span style="line-height: 45px; margin-right: 100px;">Chiara Iannicelli 1957045</span>
+        </div>
+        </footer>
+    
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-right: 20px;">
+            <h1>Homework 2.3</h1>
+            <a href="homework_2_1.html">
+            <button class="centered-button black-button">Homework 2.1</button>
+          </a>
+          </div>
+        <p>
+            Generate N uniform random variates in [0,1) and determine the distribution into class intervals [i/k, (i+1)/k), i = 0,..., k-1. <br>
+            Play with N and k values and draw some conclusion on the "shape" of the distribution.
+        </p>
+        <br><br>
+        <div class="centered">
+            <b><p>Note: it is needed to reload the page if you want to plot a new histogram</p></b><br>
+
+            <label for="N">Number of Random Numbers (N):</label>
+            <input type="number" id="N" value="100">
+            <br><br>
+            <label for="k">Number of Intervals (k):</label>
+            <input type="number" id="k" value="10">
+            <br><br>
+            <button onclick="generate()">Generate</button>
+            <div id="output3"></div>
+            <canvas id="myChart" width="200" height="100"></canvas>
+        </div>
+
+    <script>
+        function generate() {
+            var N = document.getElementById("N").value;
+            var k = document.getElementById("k").value;
+            var output = document.getElementById("output3");
+            output.innerHTML = "";
+
+            var randoms = [];
+            for (var i = 0; i < N; i++) {
+                randoms.push(Math.random());
+            }
+
+            var classIntervals = [];
+            for (var i = 0; i < k; i++) {
+                classIntervals.push([i / k, (i + 1) / k]);
+            }
+
+            var classFreq = {};
+            for (var i = 0; i < classIntervals.length; i++) {
+                classFreq[i] = 0;
+            }
+
+            for (var i = 0; i < randoms.length; i++) {
+                for (var j = 0; j < classIntervals.length; j++) {
+                    if (randoms[i] >= classIntervals[j][0] && randoms[i] < classIntervals[j][1]) {
+                        classFreq[j]++;
+                    }
+                }
+            }
+
+            for (var i = 0; i < classIntervals.length; i++) {
+                output.innerHTML += "[" + classIntervals[i][0] + ", " + classIntervals[i][1] + "): " + classFreq[i] + "<br>";
+            }
+
+            // Create a histogram using Chart.js library
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: classIntervals.map(interval => "[" + interval[0] + ", " + interval[1] + ")"),
+                    datasets: [{
+                        label: 'Frequency',
+                        data: Object.values(classFreq),
+                        backgroundColor: 'rgb(130, 23, 41, 0.2)', // Colore di sfondo con un tocco di trasparenza
+                        borderColor: 'rgb(130, 23, 41, 1)', // Colore del bordo
+                        borderWidth: 1 // Larghezza del bordo
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    </script><hr><br>
+
+    <p>I tested my script with various configurations, for instance, here is the histogram generate with inputs N = 100 and k = 10.</p><br>
+<div class="centered">
+
+    <img class="centered" src="grafico_1.jpeg" alt="Image 4" style="display:inline-block;width:50%;">
+</div>
+
+    <p> Below is the output of another run with N = 150000 and k = 50.</p><br>
+    <div class="centered">
+    <img class="centered" src="grafico_2.jpeg" alt="Image 5" style="display:inline-block;width:50%;">
+    </div>
+    <br><br><p>Click the following button to see the JavaScript code used to generate the histogram</p><br>
+
+    <button class="centered" onclick="showCode();" >JavaScript</button> <br><br>
+
+    <div class="code-box" id="code" style="display: none;">
+    <pre><code class="language-javascript">
+    function generate() {
+        var N = document.getElementById("N").value;
+        var k = document.getElementById("k").value;
+        var output = document.getElementById("output3");
+        output.innerHTML = "";
+
+        var randoms = [];
+        for (var i = 0; i < N; i++) {
+            randoms.push(Math.random());
+        }
+
+        var classIntervals = [];
+        for (var i = 0; i < k; i++) {
+            classIntervals.push([i / k, (i + 1) / k]);
+        }
+
+        var classFreq = {};
+        for (var i = 0; i < classIntervals.length; i++) {
+            classFreq[i] = 0;
+        }
+
+        for (var i = 0; i < randoms.length; i++) {
+            for (var j = 0; j < classIntervals.length; j++) {
+                if (randoms[i] >= classIntervals[j][0] && randoms[i] < classIntervals[j][1]) {
+                    classFreq[j]++;
+                }
+            }
+        }
+
+        for (var i = 0; i < classIntervals.length; i++) {
+            output.innerHTML += "[" + classIntervals[i][0] + ", " + classIntervals[i][1] + "): " + classFreq[i] + "<br>";
+        }
+
+        // Create a histogram using Chart.js library
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: classIntervals.map(interval => "[" + interval[0] + ", " + interval[1] + ")"),
+                datasets: [{
+                    label: 'Frequency',
+                    data: Object.values(classFreq),
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+    </code></pre>
+</div>
+    <br><br>
+    <br><br><p>Click the following button to see the C# code used to generate the histogram</p><br>
+
+    <button class="centered" onclick="showCode2();" >C#</button> <br><br>
+    <div class="code-box" id="code2" style="display: none;">
+    <pre><code class="language-csharp">
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+
+class Program
+{
+    static void Main()
+    {
+        int N = 100; // Replace with the value from your "N" input
+        int k = 10;  // Replace with the value from your "k" input
+
+        Random random = new Random();
+        List<double> randoms = new List<double>();
+        for (int i = 0; i < N; i++)
+        {
+            randoms.Add(random.NextDouble());
+        }
+
+        List<Tuple<double, double>> classIntervals = new List<Tuple<double, double>>();
+        for (int i = 0; i < k; i++)
+        {
+            double start = i / (double)k;
+            double end = (i + 1) / (double)k;
+            classIntervals.Add(Tuple.Create(start, end));
+        }
+
+        Dictionary<int, int> classFreq = new Dictionary<int, int>();
+        for (int i = 0; i < classIntervals.Count; i++)
+        {
+            classFreq[i] = 0;
+        }
+
+        for (int i = 0; i < randoms.Count; i++)
+        {
+            for (int j = 0; j < classIntervals.Count; j++)
+            {
+                if (randoms[i] >= classIntervals[j].Item1 && randoms[i] < classIntervals[j].Item2)
+                {
+                    classFreq[j]++;
+                }
+            }
+        }
+
+        // Create a Windows Forms application
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+
+        // Create a form and chart
+        Form form = new Form
+        {
+            Text = "Histogram",
+            Size = new System.Drawing.Size(600, 400)
+        };
+
+        Chart chart = new Chart();
+        chart.Size = new System.Drawing.Size(560, 320);
+        chart.Location = new System.Drawing.Point(20, 40);
+
+        // Create a chart area and add it to the chart
+        ChartArea chartArea = new ChartArea();
+        chart.ChartAreas.Add(chartArea);
+
+        // Create a series for the histogram
+        Series series = new Series();
+        series.ChartType = SeriesChartType.Column;
+
+        // Add data points to the series
+        foreach (var interval in classIntervals)
+        {
+            double xValue = (interval.Item1 + interval.Item2) / 2;
+            int yValue = classFreq[classIntervals.IndexOf(interval)];
+            series.Points.AddXY(xValue, yValue);
+        }
+
+        // Add the series to the chart
+        chart.Series.Add(series);
+
+        // Add the chart to the form
+        form.Controls.Add(chart);
+
+        // Show the form
+        Application.Run(form);
+    }
+}
+
+    </code></pre>
+</div>
+
+    <br><hr><br>
+
+       <!-- Collegamento ai file JavaScript di Prism.js -->
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+       function showCode() {
+            var code = document.getElementById('code');
+            code.style.display = 'block';
+        }
+        function showCode2() {
+            var code = document.getElementById('code2');
+            code.style.display = 'block';
+        }
+</script>
+
+</body>
+</html>
