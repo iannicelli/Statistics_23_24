@@ -1,0 +1,33 @@
+                A **probability space** is a mathematical model used to describe a random experiment. It is defined by a triple $(\Omega, \mathcal{F}, P)$, where:
+                
+                1. $\Omega$ is the **sample space**, a set of all possible outcomes of the experiment.
+                2. $\mathcal{F}$ is the **event space** or $\sigma$-algebra, a set of events where each event is a set of outcomes from $\Omega$. It must satisfy three conditions:
+                    - It contains the empty set.
+                    - If an event E is in $\mathcal{F}$, then its complement is also in $\mathcal{F$.
+                    - If events $E_1, E_2, E_3, ...$ are in $\mathcal{F}$, then their union is also in $\mathcal{F$.
+                3. $P$ is the **probability measure**, a function that assigns to each event in $\mathcal{F$ a probability, which is a number between 0 and 1. It must satisfy three conditions:
+                    - $P(\emptyset) = 0$ and $P(\Omega) = 1$.
+                    - $P(E) \geq 0$ for every event E in $\mathcal{F$.
+                    - If $E_1, E_2, E_3, ...$ are disjoint events in $\mathcal{F}$ (i.e., no two of them have common outcomes), then $P(\bigcup_{i=1}^{\infty} E_i) = \sum_{i=1}^{\infty} P(E_i$.
+                
+                For example, consider a simple experiment of flipping a fair coin once. The probability space for this experiment would be:
+                
+                - $\Omega = \{\text{"Heads"}, \text{"Tails"}\}$: The sample space consists of two outcomes: "Heads" and "Tails".
+                - $\mathcal{F$ = \{\emptyset, \{\text{"Heads"}\}, \{\text{"Tails"}\}, \{\text{"Heads"}, \text{"Tails"}\}$: The event space consists of four events: no outcome (empty set), "Heads", "Tails", and both "Heads" and "Tails".
+                - $P$: The probability measure assigns a probability of 0.5 to both "Heads" and "Tails", 0 to the empty set, and 1 to the set containing both "Heads" and "Tails$.
+
+
+
+                For Exercise 1, we can define the probability space as follows:
+
+                1. **Sample Space** $(\Omega)$: This is the set of all possible outcomes of an attack on a system. In this case, it would be $\Omega = \{-1, 1\}$, where -1 represents a successful penetration (attack) and 1 represents a successful defense (shield).
+                
+                2. **Event Space** $(\mathcal{F})$: This is the set of all possible combinations of outcomes for the N attacks on the M systems. It's a bit complex to list out all possibilities, but it would include sequences like (-1, -1, 1, ..., -1) representing the outcomes of N attacks on a system.
+                
+                3. **Probability Measure** $(P)$: This is a function that assigns a probability to each event in $\mathcal{F}$. Given the constant penetration probability p for each attack, we can define P as follows: P(-1) = p (probability of penetration) and P(1) = 1 - p (probability of successful defense).
+                
+                For part a and b of the exercise, we are essentially simulating the "trajectories" or sequences of outcomes for each system over N attacks and calculating various statistics (cumulative security score, cumulative frequency of penetration, etc.) based on these trajectories.
+                
+                As for the charts and animations requested in the exercise, they would be a visual representation of these statistics over time. The vertical histograms at a specific point x and at the last abscissa value would show the distribution of these statistics across all M systems at those specific points in time.
+                
+                Please note that this is a high-level explanation. The actual implementation would require programming and statistical analysis skills.

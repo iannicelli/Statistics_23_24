@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 3</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./../style.css">
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        footer {
+            background-color: rgb(130, 23, 41);
+            color: #fff;
+            padding: 10px;
+        }
+
+        footer div {
+            display: inline-block;
+            margin-right: 20px;
+            margin-top: 5px;
+        }
+
+        select {
+            background-color: rgb(130, 23, 41);
+            color: #fff;
+            border: none;
+            margin-top: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .code-box {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            margin: 10px 70px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 13px;
+        }
+
+        .canvas-container {
+            display: inline-block;
+            resize: both;
+            overflow: auto;
+            border: 1px solid #ccc;
+            margin: 10px;
+            position: relative;
+            background-color: whitesmoke;
+            width: var(--canvas-scale, 60%);
+            height: var(--canvas-scale, 60%);
+            display: block;
+        }
+
+        .canvas-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .canvas-center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .canvas-container canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .mybutton{
+            background-color: black;
+        }
+
+        .paragrafo{
+            margin-left: 5%;
+            margin-right: 5%;
+
+        }
+
+    </style>
+    <link rel="stylesheet" href="./../style.css">
+    <script src="excel-reader.js"></script>
+    
+</head>
+<body>
+    
+    <!-- Contenuto principale della pagina -->
+    <footer style="padding: 10px 0;">
+        <div>
+            <img src="./../photo1697031896.jpeg" style="width: 110px; height: 45px;">
+            <a href="./../index.html">
+                <button>Home</button>
+            </a>
+            <span style="line-height: 45px; margin-left: 30px; margin-right: 30px;">Statistics 2023/2024</span>
+            <span style="line-height: 45px; margin-right: 100px;">Chiara Iannicelli 1957045</span>
+        </div>
+    </footer>
+    
+    
+    
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-right: 20px;">
+        <h1>Homework 3.2</h1>
+        <a href="homework_3.html">
+            <button class="centered-button black-button">Homework 3.1</button>
+        </a>
+    </div>
+
+    <!-- PRIMA RISPOSTA -->
+<div class="paragrafo">
+A <strong>probability space</strong> is a mathematical model used to describe a random experiment. It is defined by a triple <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">Ω</mi><mo separator="true">,</mo><mi mathvariant="script">F</mi><mo separator="true">,</mo><mi>P</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\Omega, \mathcal{F}, P)</annotation></semantics></math>, where:
+<ol>
+    <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Ω</mi></mrow><annotation encoding="application/x-tex">\Omega</annotation></semantics></math> is the <strong>sample space</strong>, a set of all possible outcomes of the experiment.</li>
+    <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">F</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math> is the <strong>event space</strong> or <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math>-algebra, a set of events where each event is a set of outcomes from <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Ω</mi></mrow><annotation encoding="application/x-tex">\Omega</annotation></semantics></math>. It must satisfy three conditions:
+        <ul>
+            <li>It contains the empty set.</li>
+            <li>If an event E is in <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">F</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math>, then its complement is also in <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">F</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math>.</li>
+            <li>If events <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>E</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>E</mi><mn>3</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">E_1, E_2, E_3, ...</annotation></semantics></math> are in <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">F</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math>, then their union is also in <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">F</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math>.</li>
+        </ul>
+    </li>
+    <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math> is the <strong>probability measure</strong>, a function that assigns to each event in <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">F</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math> a probability, which is a number between 0 and 1. It must satisfy three conditions:
+        <ul>
+            <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi mathvariant="normal">∅</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">P(\emptyset) = 0</annotation></semantics></math> and <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi mathvariant="normal">Ω</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">P(\Omega) = 1</annotation></semantics></math>.</li>
+            <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>E</mi><mo stretchy="false">)</mo><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">P(E) \geq 0</annotation></semantics></math> for every event E in <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">F</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math>.</li>
+            <li>If <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>E</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>E</mi><mn>3</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">E_1, E_2, E_3, ...</annotation></semantics></math> are disjoint events in <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">F</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math> (i.e., no two of them have common outcomes), then <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><msubsup><mo>⋃</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi mathvariant="normal">∞</mi></msubsup><msub><mi>E</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi mathvariant="normal">∞</mi></msubsup><mi>P</mi><mo stretchy="false">(</mo><msub><mi>E</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(\bigcup_{i=1}^{\infty} E_i) = \sum_{i=1}^{\infty} P(E_i)</annotation></semantics></math>.</li>
+        </ul>
+    </li>
+</ol>
+For example, consider a simple experiment of flipping a fair coin once. The probability space for this experiment would be:
+<ul>
+    <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Ω</mi><mo>=</mo><mo stretchy="false">{</mo><mtext>"Heads"</mtext><mo separator="true">,</mo><mtext>"Tails"</mtext><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\Omega = \{\text{"Heads"}, \text{"Tails"}\}</annotation></semantics></math>: The sample space consists of two outcomes: &quot;Heads&quot; and &quot;Tails&quot;.</li>
+    <li>
+        <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">F</mi><mo>=</mo><mo stretchy="false">{</mo><mi mathvariant="normal">∅</mi><mo separator="true">,</mo><mo stretchy="false">{</mo><mtext>"Heads"</mtext><mo stretchy="false">}</mo><mo separator="true">,</mo><mo stretchy="false">{</mo><mtext>"Tails"</mtext><mo stretchy="false">}</mo><mo separator="true">,</mo><mo stretchy="false">{</mo><mtext>"Heads"</mtext><mo separator="true">,</mo><mtext>"Tails"</mtext><mo stretchy="false">}</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\mathcal{F} = \{\emptyset, \{\text{"Heads"}\}, \{\text{"Tails"}\}, \{\text{"Heads"}, \text{"Tails"}\}\}</annotation></semantics></math>: The event space consists of four events: no outcome (empty set), &quot;Heads&quot;, &quot;Tails&quot;, and both &quot;Heads&quot; and &quot;Tails&quot;.</li>
+    <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math>: The probability measure assigns a probability of 0.5 to both &quot;Heads&quot; and &quot;Tails&quot;, 0 to the empty set, and 1 to the set containing both &quot;Heads&quot; and &quot;Tails&quot;.</li>
+    </ul>
+</div>
+
+  <!--SECONDA RISPOSTA-->
+
+  <div class="paragrafo">
+    For Exercise 1, we can define the probability space as follows:
+    <ol>
+    <li><strong>Sample Space</strong> <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">Ω</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\Omega)</annotation></semantics></math>: This is the set of all possible outcomes of an attack on a system. In this case, it would be <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Ω</mi><mo>=</mo><mo stretchy="false">{</mo><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\Omega = \{-1, 1\}</annotation></semantics></math>, where -1 represents a successful penetration (attack) and 1 represents a successful defense (shield).
+    </li>
+    <li><strong>Event Space</strong> <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi mathvariant="script">F</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\mathcal{F})</annotation></semantics></math>: This is the set of all possible combinations of outcomes for the N attacks on the M systems. It&#39;s a bit complex to list out all possibilities, but it would include sequences like (-1, -1, 1, ..., -1) representing the outcomes of N attacks on a system.
+    </li>
+    <li><strong>Probability Measure</strong> <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>P</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(P)</annotation></semantics></math>: This is a function that assigns a probability to each event in <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">F</mi></mrow><annotation encoding="application/x-tex">\mathcal{F}</annotation></semantics></math>. Given the constant penetration probability p for each attack, we can define P as follows: P(-1) = p (probability of penetration) and P(1) = 1 - p (probability of successful defense).
+    </li>
+    </ol>
+    For part a and b of the exercise, we are essentially simulating the &quot;trajectories&quot; or sequences of outcomes for each system over N attacks and calculating various statistics (cumulative security score, cumulative frequency of penetration, etc.) based on these trajectories.
+    As for the charts and animations requested in the exercise, they would be a visual representation of these statistics over time. The vertical histograms at a specific point x and at the last abscissa value would show the distribution of these statistics across all M systems at those specific points in time.
+
+    
+  </div>
+    </body>
+</html>

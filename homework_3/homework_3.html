@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homework 3</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./../style.css">
     <style>
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -64,8 +66,8 @@
             margin: 10px;
             position: relative;
             background-color: whitesmoke;
-            width: 60%;
-            height: 60%;
+            width: var(--canvas-scale, 60%);
+            height: var(--canvas-scale, 60%);
             display: block;
         }
 
@@ -85,6 +87,10 @@
             width: 100%;
             height: 100%;
             display: block;
+        }
+
+        .mybutton{
+            background-color: black;
         }
 
 
@@ -109,7 +115,10 @@
     
     
         <div style="display: flex; align-items: center; justify-content: space-between; margin-right: 20px;">
-            <h1>Homework 3</h1>
+            <h1>Homework 3.1</h1>
+            <a href="homework_3_2.html">
+                <button class="centered-button black-button">Homework 3.2</button>
+            </a>
         </div>
         <br>
 
@@ -159,10 +168,37 @@ Make sure that each animation is enclosed into a "frame" (a rectangle) resizable
             </p>
 
                 <button onclick="updateAllCharts()">Update Chart</button>
-
-        
+                <br><br>
+                <p>
+                    All the canvas are resizable, but you can choose to modify the aspect also using the buttons below.
+                </p>
+                <div class="centered">
+                    <button class="mybutton" onclick="setCustomScale(0.1)">10%</button>
+                    <button class="mybutton" onclick="setCustomScale(0.2)">20%</button>
+                    <button class="mybutton" onclick="setCustomScale(0.3)">30%</button>
+                    <button class="mybutton" onclick="setCustomScale(0.4)">40%</button>
+                    <button class="mybutton" onclick="setCustomScale(0.5)">50%</button>
+                    <button class="mybutton" onclick="setCustomScale(0.6)">60%</button>
+                    <button class="mybutton" onclick="setCustomScale(0.7)">70%</button>
+                    <button class="mybutton" onclick="setCustomScale(0.8)">80%</button>
+                    <button class="mybutton" onclick="setCustomScale(0.9)">90%</button>
+                    <button class="mybutton" onclick="setCustomScale(1.0)">100%</button>
+                </div>
         </div>
 
+        
+    <script>
+            function setCustomScale(customScale) {
+                if (!isNaN(customScale) && customScale >= 0 && customScale <= 1) {
+                    // Aggiorna la variabile CSS con il valore personalizzato
+                    document.documentElement.style.setProperty('--canvas-scale', (customScale * 100) + '%');
+                } else {
+                    alert("Invalid custom scale. Please enter a number between 0 and 1.");
+                }
+            }
+
+    </script>
+       
         <br>
         
         <div class="centered">
