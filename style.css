@@ -17,6 +17,7 @@ button {
     border-radius: 5px;
 }
 
+
 button:hover {
     background-color: #5f0f1e; /* Tonalità più scura al passaggio del mouse */
 }

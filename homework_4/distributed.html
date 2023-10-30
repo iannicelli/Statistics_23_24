@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calcola Distribuzione</title>
+</head>
+<body>
+  <input type="file" id="fileInput" onchange="handleFile(this)" />
+  <div id="output"></div>
+  <div id="result"></div>
+  <div id="selectedColumns"></div>
+  <div id="intervalControls">
+    <div>
+      <label for="weightMin">Peso Min:</label>
+      <input type="number" id="weightMin" name="weightMin">
+      <label for="weightMax">Peso Max:</label>
+      <input type="number" id="weightMax" name="weightMax">
+      <button onclick="addWeightInterval()">Aggiungi Intervallo Peso</button>
+    </div>
+    <div>
+      <label for="heightMin">Altezza Min:</label>
+      <input type="number" id="heightMin" name="heightMin">
+      <label for="heightMax">Altezza Max:</label>
+      <input type="number" id="heightMax" name="heightMax">
+      <button onclick="addHeightInterval()">Aggiungi Intervallo Altezza</button>
+    </div>
+    <div>
+      <label for="remunerationMin">Remunerazione Min:</label>
+      <input type="number" id="remunerationMin" name="remunerationMin">
+      <label for="remunerationMax">Remunerazione Max:</label>
+      <input type="number" id="remunerationMax" name="remunerationMax">
+      <button onclick="addRemunerationInterval()">Aggiungi Intervallo Remunerazione</button>
+    </div>
+  </div>
+  <div id="intervals"></div>
+  <button id="computeButton" onclick="computeDistribution()">Calcola Distribuzione</button>
+  <div id="result"></div>
+
+  <script src="xlsx.full.min.js"></script>
+  <script src="script3.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.6/xlsx.full.min.js"></script>
+</body>
+</html>
