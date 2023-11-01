@@ -38,7 +38,7 @@ function handleFile(input) {
           
           // Aggiorna l'elemento HTML per visualizzare le colonne selezionate
           const selectedColumnsDiv = document.getElementById('selectedColumns');
-          selectedColumnsDiv.innerHTML = `Hai scelto queste variabili: ${selectedColumns.join(', ')}`;
+          selectedColumnsDiv.innerHTML = `Choosen variables: ${selectedColumns.join(', ')}`;
 
 /*           // Crea una tabella per visualizzare i dati della colonna
           const table = document.createElement('table');
@@ -109,8 +109,8 @@ function computeDistribution() {
     const headerRow = thead.insertRow();
     const headerCell1 = document.createElement('th');
     const headerCell2 = document.createElement('th');
-    headerCell1.textContent = 'Valore';
-    headerCell2.textContent = 'Frequenza';
+    headerCell1.textContent = 'Value';
+    headerCell2.textContent = 'Frequancy';
     headerRow.appendChild(headerCell1);
     headerRow.appendChild(headerCell2);
   
@@ -148,12 +148,12 @@ function computeDistribution() {
     // Aggiungi le intestazioni delle colonne
     for (let i = 0; i < data.length; i++) {
       const headerCell = document.createElement('th');
-      headerCell.textContent = `Colonna ${i + 1}`;
+      headerCell.textContent = `Column ${i + 1}`;
       headerRow.appendChild(headerCell);
     }
   
     const headerCell = document.createElement('th');
-    headerCell.textContent = 'Frequenza';
+    headerCell.textContent = 'Frequency';
     headerRow.appendChild(headerCell);
   
     const tbody = resultTable.createTBody();

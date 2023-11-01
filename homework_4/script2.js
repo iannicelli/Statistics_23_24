@@ -44,12 +44,14 @@ function handleFile(input) {
           // Estrai i dati per la colonna specifica
           const columnData = jsonData.slice(1).map(row => row[colIndex]);
 
+          checkColumnType(columnData, columnName);
+
           // Memorizza il nome della colonna selezionata
           selectedColumns.push(columnName);
 
           // Aggiorna l'elemento HTML per visualizzare le colonne selezionate
           const selectedColumnsDiv = document.getElementById('selectedColumns');
-          selectedColumnsDiv.innerHTML = `Hai scelto queste variabili: ${selectedColumns.join(', ')}`;
+          selectedColumnsDiv.innerHTML = `Choosen variables: ${selectedColumns.join(', ')}`;
 
           // Crea una tabella per visualizzare i dati della colonna
           const table = createDataTable(columnData, columnName);
@@ -60,7 +62,7 @@ function handleFile(input) {
 
           // Aggiungi il tasto "Rimuovi" per questa colonna
           const removeButton = document.createElement('button');
-          removeButton.textContent = `Rimuovi Colonna ${columnName}`;
+          removeButton.textContent = `Remove column ${columnName}`;
           removeButton.style.backgroundColor = "rgb(0,0,0)";
           removeButton.style.marginRight = '10px';
           removeButton.style.marginTop = '5px';
@@ -109,7 +111,6 @@ function removeColumn(columnName) {
   
   if (removeButton) {
     const salutationElement = document.getElementById('salutation');
-    salutationElement.innerHTML = 'Ciao';
     removeButton.remove();
   }
   // Rimuovi la colonna selezionata dall'array delle colonne selezionate
@@ -117,7 +118,7 @@ function removeColumn(columnName) {
 
   // Aggiorna l'elemento HTML per visualizzare le colonne selezionate
   const selectedColumnsDiv = document.getElementById('selectedColumns');
-  selectedColumnsDiv.innerHTML = `Hai scelto queste variabili: ${selectedColumns.join(', ')}`;
+  selectedColumnsDiv.innerHTML = `Choosen variables: ${selectedColumns.join(', ')}`;
 
 }
 
@@ -126,7 +127,7 @@ function removeColumn(columnName) {
 function computeDistribution() {
   // Verifica se almeno una colonna è stata selezionata
   if (selectedColumns.length === 0) {
-    alert('Devi selezionare almeno una colonna prima di calcolare la distribuzione.');
+    alert('You have to choose at least one column before computing the distribution.');
     return;
   }
 
@@ -157,8 +158,8 @@ function calculateSingleDistribution(data) {
     const headerRow = thead.insertRow();
     const headerCell1 = document.createElement('th');
     const headerCell2 = document.createElement('th');
-    headerCell1.textContent = 'Valore';
-    headerCell2.textContent = 'Frequenza';
+    headerCell1.textContent = 'Value';
+    headerCell2.textContent = 'Frequency';
     headerRow.appendChild(headerCell1);
     headerRow.appendChild(headerCell2);
   
@@ -194,11 +195,11 @@ function calculateJointDistribution(data) {
   
     // Aggiungi le intestazioni delle colonne
     const combinationsHeader = document.createElement('th');
-    combinationsHeader.textContent = 'Combinazioni';
+    combinationsHeader.textContent = 'Combinations';
     headerRow.appendChild(combinationsHeader);
   
     const frequencyHeader = document.createElement('th');
-    frequencyHeader.textContent = 'Frequenza';
+    frequencyHeader.textContent = 'Frequency';
     headerRow.appendChild(frequencyHeader);
   
     const tbody = resultTable.createTBody();
@@ -281,3 +282,28 @@ function getCombinations(arr) {
   }
   
 
+
+  function checkColumnType(data) {
+    for (let i = 0; i < data.length; i++) {
+      const value = data[i];
+      if (typeof value === 'string') {
+        // Se il valore è una stringa, potrebbe essere un valore di testo
+        if (!isNaN(parseFloat(value))) {
+          console.log(`La riga ${i} contiene un valore numerico con un punto decimale.`);
+        } else {
+          console.log(`La riga ${i} contiene un valore di testo.`);
+        }
+      } else if (typeof value === 'number') {
+        // Se il valore è un numero, controlla se contiene un punto decimale
+        if (value.toString().includes('.')) {
+          console.log(`La riga ${i} contiene un valore numerico con un punto decimale.`);
+        } else {
+          console.log(`La riga ${i} contiene un valore numerico.`);
+        }
+      } else {
+        console.log(`La riga ${i} contiene un tipo di dato non supportato.`);
+      }
+    }
+  }
+
+  
