@@ -520,10 +520,15 @@
         var image = document.getElementById('imageToShow');
         image.style.display = 'block';
     }
-    function showCode() {
-        var code = document.getElementById('code');
-        code.style.display = 'block';
-    }
+            function showCode() {
+                 var codeElement = document.getElementById('code');
+                 if (codeElement.style.display === 'none') {
+                    codeElement.style.display = 'block'; // Mostra il codice
+                } else {
+                    codeElement.style.display = 'none'; // Nascondi il codice
+                }
+             }
+
 </script>
 
 

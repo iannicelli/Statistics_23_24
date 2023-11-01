@@ -70,18 +70,22 @@
   </a>
   </div>
   <p style="font-size: 18px;">
-This homework represents an improvement of homework 2. In this new version, it is possible to choose the columns on which to calculate the joint distribution. <br>
+This homework represents an improvement of homework 2. In this new version, it is possible to choose the columns on which to calculate the joint distribution. <br><br>
 
-To get started, you need to upload the file: Click on the "Choose File" button, then select the file "Professional Life.xlsx."<br>
+To get started, you need to upload the file: Click on the "Choose File" button, then select the file "Professional Life.xlsx."<br><br>
 
-A button will appear for each column: Select the variables for which you want to calculate the joint distribution. Finally, click the "Compute" button to view the table. <br>
+A button will appear for each column: Select the variables for which you want to calculate the joint distribution. Finally, click the "Compute" button to view the table. <br><br>
 
 You can delete a variable by clicking on the corresponding button and then clicking "Compute" again. <br>
+<br>
 </p>
 <br>
 <div class="centered">
     <input type="file" id="fileInput" onchange="handleFile(this)" style="background-color: rgb(130, 23, 41); color: #fff; border: none; padding: 5px; margin-top: 5px;">
     <br>
+    <p style="font-size: 18px;">
+    If you want to dowload the file, you can do it at the following link: <a href="https://docs.google.com/spreadsheets/d/1_pZ_HQl5y4-aNAO8WMsgj0GqsFdZJcB8sqBtHYGSfys/edit#gid=0">Professional Life</a>
+    </p>
     <br>
     <br>
     <div id="output"></div>
@@ -97,14 +101,16 @@ You can delete a variable by clicking on the corresponding button and then click
 
     <br><br>
     <p style="font-size: 20px;">Click the following button to see the JavaScript code</p><br>
+<div class="centered">
 
-    <button class="centered" onclick="showCode();" >JavaScript</button> <br><br>
-
+    <button  onclick="showCode();" >JavaScript</button>   <button  onclick="showCode2();" >C#</button><br><br>
+    
+</div>
     <div class="code-box" id="code" style="display: none;">
         <pre>
             <code class="language-javascript">
 
-                let selectedColumns = []; // Array per memorizzare le colonne selezionate
+let selectedColumns = []; // Array per memorizzare le colonne selezionate
 let jsonData; // Variabile per i dati JSON
 let columnNames; // Variabile per i nomi delle colonne
 let intervals = {
@@ -389,7 +395,327 @@ function getCombinations(arr) {
     
             </code>
         </pre>
+<br>
+<br>
+<div class="code-box" id="code2" style="display: none;">
+    <pre>
+        <code class="language-csharp">
+            using System;
+            using System.Collections.Generic;
+            using System.IO;
+            using Microsoft.AspNetCore.Http;
+            using Microsoft.AspNetCore.Mvc;
+            
+            namespace ExcelUpload.Controllers
+            {
+                [Route("api/[controller]")]
+                [ApiController]
+                public class ExcelUploadController : ControllerBase
+                {
+                    private readonly Dictionary<string, object> intervals = new Dictionary<string, object>
+                    {
+                        { "weight", new List<decimal>() },
+                        { "height", new List<decimal>() },
+                        { "remuneration", new List<decimal>() }
+                    };
+            
+                    [HttpPost("UploadExcel")]
+                    public IActionResult UploadExcel(IFormFile file)
+                    {
+                        if (file == null || file.Length == 0)
+                        {
+                            return BadRequest("Invalid file");
+                        }
+            
+                        try
+                        {
+                            using (var stream = new MemoryStream())
+                            {
+                                file.CopyTo(stream);
+                                using (var package = new ExcelPackage(stream))
+                                {
+                                    var workbook = package.Workbook;
+                                    var worksheet = workbook.Worksheets[0];
+                                    var rowCount = worksheet.Dimension.Rows;
+                                    var columnNames = new List<string>();
+            
+                                    for (int col = 1; col <= worksheet.Dimension.Columns; col++)
+                                    {
+                                        columnNames.Add(worksheet.Cells[1, col].Value.ToString());
+                                    }
+            
+                                    for (int colIndex = 1; colIndex <= columnNames.Count; colIndex++)
+                                    {
+                                        var columnName = columnNames[colIndex - 1];
+            
+                                        // Crea un bottone per mostrare la colonna
+                                        var button = new Button
+                                        {
+                                            Text = columnName,
+                                            MarginRight = 10,
+                                            MarginTop = 5
+                                        };
+            
+                                        button.OnClick += () =>
+                                        {
+                                            var columnData = new List<object>();
+            
+                                            for (int row = 2; row <= rowCount; row++)
+                                            {
+                                                columnData.Add(worksheet.Cells[row, colIndex].Value);
+                                            }
+            
+                                            CheckColumnType(columnData, columnName);
+            
+                                            // Memorizza il nome della colonna selezionata
+                                            selectedColumns.Add(columnName);
+            
+                                            // Aggiorna l'elemento HTML per visualizzare le colonne selezionate
+                                            var selectedColumnsDiv = GetElementById("selectedColumns");
+                                            selectedColumnsDiv.InnerHtml = $"Choosen variables: {string.Join(", ", selectedColumns)}";
+            
+                                            // Crea una tabella per visualizzare i dati della colonna
+                                            var table = CreateDataTable(columnData, columnName);
+            
+                                            // Aggiungi una riga vuota (line break)
+                                            var lineBreak = new LineBreak();
+                                            container.AppendChild(lineBreak);
+            
+                                            // Aggiungi il tasto "Rimuovi" per questa colonna
+                                            var removeButton = new Button
+                                            {
+                                                Text = $"Remove column {columnName}",
+                                                BackgroundColor = "rgb(0,0,0)",
+                                                MarginRight = 10,
+                                                MarginTop = 5
+                                            };
+            
+                                            removeButton.OnClick += () =>
+                                            {
+                                                RemoveColumn(columnName);
+                                                container.RemoveChild(removeButton);
+                                            };
+            
+                                            // Aggiungi la tabella e il tasto "Rimuovi" al contenitore
+                                            container.AppendChild(table);
+                                            container.AppendChild(removeButton);
+                                        };
+            
+                                        // Aggiungi il bottone al contenitore
+                                        container.AppendChild(button);
+                                    }
+                                }
+                            }
+            
+                            return Ok("File uploaded successfully");
+                        }
+                        catch (Exception ex)
+                        {
+                            return StatusCode(500, ex.Message);
+                        }
+                    }
+            
+                    private void CheckColumnType(List<object> data, string columnName)
+                    {
+                        foreach (var value in data)
+                        {
+                            if (value is string strValue)
+                            {
+                                // Se il valore è una stringa, potrebbe essere un valore di testo
+                                if (decimal.TryParse(strValue, out _))
+                                {
+                                    Console.WriteLine($"Colonna \"{columnName}\" - Contiene un valore numerico con un punto decimale.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"Colonna \"{columnName}\" - Contiene un valore di testo.");
+                                }
+                            }
+                            else if (value is decimal decimalValue)
+                            {
+                                // Se il valore è un numero, controlla se contiene un punto decimale
+                                if (decimalValue.ToString().Contains('.'))
+                                {
+                                    Console.WriteLine($"Colonna \"{columnName}\" - Contiene un valore numerico con un punto decimale.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"Colonna \"{columnName}\" - Contiene un valore numerico.");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Colonna \"{columnName}\" - Contiene un tipo di dato non supportato.");
+                            }
+                        }
+                    }
+            
+                    // Rimuovi il tasto "Rimuovi" e la colonna dai dati
+                    private void RemoveColumn(string columnName)
+                    {
+                        // Rimuovi la colonna selezionata dall'array delle colonne selezionate
+                        selectedColumns.Remove(columnName);
+            
+                        // Aggiorna l'elemento HTML per visualizzare le colonne selezionate
+                        var selectedColumnsDiv = GetElementById("selectedColumns");
+                        selectedColumnsDiv.InnerHtml = $"Choosen variables: {string.Join(", ", selectedColumns)}";
+                    }
+            
+            
+                }
+            }
+            using System;
+            using System.Collections.Generic;
+            using OfficeOpenXml; // Assicurati di aggiungere il pacchetto NuGet "EPPlus" per lavorare con Excel
 
+            namespace ExcelUpload
+            {
+                public class ExcelDataHelper
+                {
+                    public static ExcelTable CreateDataTable(List<object> data, string columnName)
+                    {
+                        var table = new ExcelTable();
+                        table.AddColumn("Index", 1);
+                        table.AddColumn(columnName, 2);
+
+                        for (var i = 0; i < data.Count; i++)
+                        {
+                            table.AddRow(i + 1, data[i]);
+                        }
+
+                        return table;
+                    }
+
+                    public static ExcelTable CalculateJointDistribution(List<List<object>> data, List<string> columnNames)
+                    {
+                        var table = new ExcelTable();
+                        table.AddColumn("Combinations", 1);
+                        table.AddColumn("Frequency", 2);
+
+                        var combinations = GenerateCombinations(data);
+                        var distribution = new Dictionary<string, int>();
+
+                        foreach (var combination in combinations)
+                        {
+                            var normalizedCombination = combination.ConvertAll(value => NormalizeValue(value));
+                            var key = string.Join(", ", normalizedCombination);
+
+                            if (distribution.ContainsKey(key))
+                            {
+                                distribution[key]++;
+                            }
+                            else
+                            {
+                                distribution[key] = 1;
+                            }
+                        }
+
+                        foreach (var kvp in distribution)
+                        {
+                            table.AddRow(kvp.Key, kvp.Value);
+                        }
+
+                        return table;
+                    }
+
+                    private static List<List<object>> GenerateCombinations(List<List<object>> data)
+                    {
+                        var combinations = new List<List<object>>();
+                        var maxLength = data.Max(arr => arr.Count);
+
+                        for (var i = 0; i < maxLength; i++)
+                        {
+                            var combination = data.ConvertAll(arr => i < arr.Count ? arr[i] : null);
+                            combinations.Add(combination);
+                        }
+
+                        return combinations;
+                    }
+
+                    private static object NormalizeValue(object value)
+                    {
+                        if (value is string strValue)
+                        {
+                            if (decimal.TryParse(strValue, out _))
+                            {
+                                return strValue;
+                            }
+                            return strValue.Trim().ToLower();
+                        }
+                        if (value is decimal decimalValue)
+                        {
+                            return decimalValue.ToString().Contains('.') ? decimalValue : (int)decimalValue;
+                        }
+                        return value;
+                    }
+                }
+
+                public class ExcelTable
+                {
+                    private List<ExcelRow> rows = new List<ExcelRow>();
+                    private List<ExcelColumn> columns = new List<ExcelColumn>();
+
+                    public void AddRow(params object[] values)
+                    {
+                        var row = new ExcelRow();
+                        for (var i = 0; i < columns.Count; i++)
+                        {
+                            row.Cells.Add(new ExcelCell(columns[i], values[i]));
+                        }
+                        rows.Add(row);
+                    }
+
+                    public void AddColumn(string name, int index)
+                    {
+                        var column = new ExcelColumn { Name = name, Index = index };
+                        columns.Add(column);
+                    }
+
+                    public ExcelWorksheet CreateWorksheet(ExcelPackage package, string sheetName)
+                    {
+                        var worksheet = package.Workbook.Worksheets.Add(sheetName);
+                        foreach (var column in columns)
+                        {
+                            worksheet.Cells[1, column.Index].Value = column.Name;
+                        }
+                        for (var i = 0; i < rows.Count; i++)
+                        {
+                            for (var j = 0; j < columns.Count; j++)
+                            {
+                                worksheet.Cells[i + 2, columns[j].Index].Value = rows[i].Cells[j].Value;
+                            }
+                        }
+                        return worksheet;
+                    }
+                }
+
+                public class ExcelRow
+                {
+                    public List<ExcelCell> Cells { get; } = new List<ExcelCell>();
+                }
+
+                public class ExcelCell
+                {
+                    public ExcelCell(ExcelColumn column, object value)
+                    {
+                        Column = column;
+                        Value = value;
+                    }
+
+                    public ExcelColumn Column { get; }
+                    public object Value { get; }
+                }
+
+                public class ExcelColumn
+                {
+                    public string Name { get; set; }
+                    public int Index { get; set; }
+                }
+            }
+
+            
+        </code>
+    </pre>
 </div>
 
     <script src="xlsx.full.min.js"></script>
@@ -406,8 +732,20 @@ function getCombinations(arr) {
 
         <script>
             function showCode() {
-                 var code = document.getElementById('code');
-                 code.style.display = 'block';
+                 var codeElement = document.getElementById('code');
+                 if (codeElement.style.display === 'none') {
+                    codeElement.style.display = 'block'; // Mostra il codice
+                } else {
+                    codeElement.style.display = 'none'; // Nascondi il codice
+                }
+             }
+            function showCode2() {
+                 var codeElement = document.getElementById('code2');
+                 if (codeElement.style.display === 'none') {
+                    codeElement.style.display = 'block'; // Mostra il codice
+                } else {
+                    codeElement.style.display = 'none'; // Nascondi il codice
+                }
              }
      </script>
     

@@ -762,14 +762,22 @@ Make sure that each animation is enclosed into a "frame" (a rectangle) resizable
     <script src="script.js"></script>
 
     <script>
-        function showCode1() {
-             var code = document.getElementById('code1');
-             code.style.display = 'block';
-         }
-         function showCode2() {
-             var code = document.getElementById('code2');
-             code.style.display = 'block';
-         }
+            function showCode() {
+                 var codeElement = document.getElementById('code');
+                 if (codeElement.style.display === 'none') {
+                    codeElement.style.display = 'block'; // Mostra il codice
+                } else {
+                    codeElement.style.display = 'none'; // Nascondi il codice
+                }
+             }
+            function showCode2() {
+                 var codeElement = document.getElementById('code2');
+                 if (codeElement.style.display === 'none') {
+                    codeElement.style.display = 'block'; // Mostra il codice
+                } else {
+                    codeElement.style.display = 'none'; // Nascondi il codice
+                }
+             }
     </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>

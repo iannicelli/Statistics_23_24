@@ -335,14 +335,22 @@ class Program
        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-       function showCode() {
-            var code = document.getElementById('code');
-            code.style.display = 'block';
-        }
-        function showCode2() {
-            var code = document.getElementById('code2');
-            code.style.display = 'block';
-        }
+            function showCode() {
+                 var codeElement = document.getElementById('code');
+                 if (codeElement.style.display === 'none') {
+                    codeElement.style.display = 'block'; // Mostra il codice
+                } else {
+                    codeElement.style.display = 'none'; // Nascondi il codice
+                }
+             }
+            function showCode2() {
+                 var codeElement = document.getElementById('code2');
+                 if (codeElement.style.display === 'none') {
+                    codeElement.style.display = 'block'; // Mostra il codice
+                } else {
+                    codeElement.style.display = 'none'; // Nascondi il codice
+                }
+             }
 </script>
 
 </body>
