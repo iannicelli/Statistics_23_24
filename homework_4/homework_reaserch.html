@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homework_4_2</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        footer {
+            background-color: rgb(130, 23, 41);
+            color: #fff;
+            padding: 10px; /* Aggiungi spazio intorno ai contenuti del footer */
+        }
+
+        footer div {
+            display: inline-block; /* Posiziona gli elementi div in linea */
+            margin-right: 20px; /* Aggiungi spazio tra gli elementi a sinistra */
+            margin-top: 5px;
+        }
+
+        select {
+            background-color: rgb(130, 23, 41);
+            color: #fff;
+            border: none;
+            margin-top: 5px;
+        }
+
+        .code-box {
+            background-color: #333; /* Sfondo scuro per la box del codice */
+            color: #fff;
+            padding: 10px;
+            margin: 10px 70px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 13px;
+        }
+
+        
+    </style>
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+<body>
+
+    <footer style="padding: 10px 0;">
+        <div>
+            <img src="../photo1697031896.jpeg" style="width: 110px; height: 45px;">
+    
+            <a href="../index.html">
+                <button>Home</button>
+            </a>
+        
+            <span style="line-height: 45px; margin-left: 30px; margin-right: 30px;">Statistics 2023/2024</span>
+            <span style="line-height: 45px; margin-right: 100px;">Chiara Iannicelli 1957045</span>
+        </div>
+        <div>
+    </footer>
+
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-right: 20px;">
+        <h1>Homework 4.2</h1>
+    </div>
+
+
+
+   <p style="font-size: 20px;"> 
+The <b>Law of Large Numbers (LLN)</b> is a fundamental concept in probability and statistics that describes the result of performing the same experiment a large number of times. According to the LLN, the average of the results obtained from a large number of trials should be close to the expected value, and will tend to become closer as more trials are performed¹. This theorem guarantees stable long-term results for the averages of some random events¹. <br><br>
+
+In relation to <b>Part b</b> of my homework, the simulation of the cumulated frequency of penetration and its normalization by the number of attacks or square root of the number of attacks is related to the LLN. As I increase the number of attacks (N), the average cumulated frequency or normalized frequency should converge to a certain value (the expected value), which is a manifestation of the LLN. <br><br>
+
+The <b>Central Limit Theorem (CLT)</b>, on the other hand, states that if you have a large sample of independent and identically distributed random variables, then the distribution of the sample means will approach a normal distribution, regardless of the shape of the original distribution⁴. <br><br>
+
+In relation to <b>Part a</b> of my homework, where I simulate a "security score" for each attack on M systems, this can be seen as drawing from a distribution (with -1 for penetration and 1 for successful shield). As I increase N (number of attacks), according to CLT, the distribution of these scores should approach a normal distribution. <br><br>
+
+To modify or "normalize" the "security score" based on CLT for asymptotic convergence to a proper distribution, we could consider standardizing your security scores. This involves subtracting the mean and dividing by the standard deviation. This process will ensure that your security scores have a mean of 0 and standard deviation of 1, which aligns with the standard normal distribution that CLT suggests for large samples. <br><br>
+
+Remember that both LLN and CLT are asymptotic properties, meaning they hold in the limit as N goes to infinity. In practice, we work with finite N, but these results give us an understanding of how our estimations behave as we increase our sample size. <br><br>
+
+</p>
+
+<br><br>
+
+<h2>Difference between LLN e CLT</h2>
+
+<p style="font-size: 20px;">
+    The <b>Law of Large Numbers (LLN)</b> and the <b>Central Limit Theorem (CLT)</b> are both fundamental concepts in probability and statistics, but they have different implications: <br><br>
+
+1. <b>Law of Large Numbers (LLN)</b>: This theorem states that if you perform the same experiment a large number of times, the average of the results obtained should be close to the expected value, and will tend to become closer as more trials are performed. In other words, as the size of your sample increases, the mean of your sample gets closer and closer to the mean of the whole population. <br><br>
+
+2. <b>Central Limit Theorem (CLT)</b>: This theorem states that if you have a large sample of independent and identically distributed random variables, then the distribution of the sample means will approach a normal distribution, regardless of the shape of the original distribution. This means that if you take enough samples from any population, the graph of the averages of those samples will look like a normal distribution. <br><br>
+
+In summary, while LLN tells us that with more trials our sample mean converges to the true population mean, CLT tells us about the shape that this convergence takes, which is a normal distribution for large enough samples. <br><br>
+</p>    
+
+<br><br>
+
+<h2>Example of LLN</h2>
+
+<p style="font-size: 20px;">
+    Let's consider a simple example of flipping a fair coin. <br>
+
+    The probability of getting a head (H) is 0.5 and the probability of getting a tail (T) is also 0.5. If we flip the coin once or twice, we might not get equal proportions of heads and tails due to randomness. <br><br>
+    
+    However, according to the Law of Large Numbers, if we flip the coin a large number of times, say 10,000 times, the proportion of heads to total flips (heads and tails) should be close to 0.5, which is the expected probability of getting a head. <br><br>
+    
+    So, if you were to conduct this experiment and keep track of the proportion of heads after each flip, you would notice that as the number of flips increases, the proportion of heads tends to stabilize around 0.5. This is the Law of Large Numbers in action! It tells us that the average outcome over many trials converges to the expected value. <br><br>
+
+</p> 
+
+<h2>Example of CLT</h2>
+
+<p style="font-size: 20px;">
+    Let's consider an example involving the average height of people. <br>
+
+    Suppose we're interested in the average height of all adults in a large city. It's not feasible to measure the height of every adult, so we take a random sample. The Central Limit Theorem (CLT) tells us that if we take enough random samples and calculate their averages, the distribution of those averages will be approximately normally distributed, regardless of the shape of the original population's distribution. <br><br>
+    
+    So, even if the distribution of heights in the entire population is not normal (maybe it's skewed because there are many tall buildings where basketball players live), the distribution of average heights from our samples will still be approximately normal if our sample size is large enough. <br><br>
+    
+    This property is very powerful and forms the basis for many statistical methods, including confidence intervals and hypothesis testing. It allows us to make inferences about a population based on a sample. <br><br>
+</p> 
+
+
+<h2>Source</h2>
+<p style="font-size: 15px;">
+(1) Law of large numbers - Wikipedia. https://en.wikipedia.org/wiki/Law_of_large_numbers. <br>
+(2) Central limit theorem - Wikipedia. https://en.wikipedia.org/wiki/Central_limit_theorem. <br>
+(3) Law of Large Numbers: Definition + Examples - Statology. https://www.statology.org/law-of-large-numbers/. <br>
+(4) Law of Large Numbers: What It Is, How It's Used, Examples - Investopedia. https://www.investopedia.com/terms/l/lawoflargenumbers.asp. <br>
+(5) Teoremi centrali del limite - Wikipedia. https://it.wikipedia.org/wiki/Teoremi_centrali_del_limite. <br>
+(6) Central Limit Theorem: Definition + Examples - Statology. https://www.statology.org/central-limit-theorem/. <br>
+</p>
+
+</body>
+</html>
