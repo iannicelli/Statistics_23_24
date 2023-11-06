@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homework 3</title>
+    <title>Homework 5</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./../style.css">
-    <style>
 
+    <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -17,12 +16,12 @@
         footer {
             background-color: rgb(130, 23, 41);
             color: #fff;
-            padding: 10px;
+            padding: 10px; /* Aggiungi spazio intorno ai contenuti del footer */
         }
 
         footer div {
-            display: inline-block;
-            margin-right: 20px;
+            display: inline-block; /* Posiziona gli elementi div in linea */
+            margin-right: 20px; /* Aggiungi spazio tra gli elementi a sinistra */
             margin-top: 5px;
         }
 
@@ -31,6 +30,16 @@
             color: #fff;
             border: none;
             margin-top: 5px;
+        }
+
+        .code-box {
+            background-color: #333; /* Sfondo scuro per la box del codice */
+            color: #fff;
+            padding: 10px;
+            margin: 10px 70px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 13px;
         }
 
         table {
@@ -46,16 +55,6 @@
 
         th {
             background-color: #f2f2f2;
-        }
-
-        .code-box {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            margin: 10px 70px;
-            border-radius: 5px;
-            font-family: monospace;
-            font-size: 13px;
         }
 
         .canvas-container {
@@ -93,169 +92,180 @@
             background-color: black;
         }
 
-
     </style>
-    <link rel="stylesheet" href="./../style.css">
+    <link rel="stylesheet" href="../style.css">
     <script src="excel-reader.js"></script>
 </head>
 <body>
-    
-    <!-- Contenuto principale della pagina -->
+
     <footer style="padding: 10px 0;">
         <div>
-            <img src="./../photo1697031896.jpeg" style="width: 110px; height: 45px;">
-            <a href="./../index.html">
+            <img src="../photo1697031896.jpeg" style="width: 110px; height: 45px;">
+    
+            <a href="../index.html">
                 <button>Home</button>
             </a>
+        
             <span style="line-height: 45px; margin-left: 30px; margin-right: 30px;">Statistics 2023/2024</span>
             <span style="line-height: 45px; margin-right: 100px;">Chiara Iannicelli 1957045</span>
         </div>
-        </footer>
+        <div>
+    </footer>
     
-    
-    
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-right: 20px;">
-            <h1>Homework 3.1</h1>
-            <a href="homework_3_2.html">
-                <button class="centered-button black-button">Homework 3.2</button>
-            </a>
-        </div>
-        <br>
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-right: 20px;">
+        <h1>Homework 5.1</h1>
+        <a href="../homework_5/homework_5_2.html">
+            <button class="centered-button black-button">Homework 5.2</button>
+        </a>
+    </div>
 
-        <p style="font-size: 20px;">
-        <b>Part a </b><br>
-M systems are subject to a series of N attacks. On the x-axis, we indicate the attacks and on the Y-axis we
-simulate the accumulation of a "security score" (-1, 1), where the score is -1 if the system is penetrated
-and 1 if the system was successfully "shielded" or protected. Simulate the score "trajectories" for all systems,
-assuming, for simplicity, a constant penetration probability p at each attack.
+    <br>
+
+    <p style="font-size: 20px;">
+    <b>Exercise </b><br>
+M servers are subject to attacks during a period of time T (for instance 1 year).
+Subdivide the interval T in N subinterval of size T/N and in each of this suppose that
+an attack can occur with probability λ = T/N.
+Simulate the attacks to the M servers and represent each of them with a line which
+makes jumps of 1 at each attack event.
 </p>
 <p style="font-size: 20px;">
-<b>Part b </b><br>
-Same as before, but simulate the cumulated frequency, say f, of penetration. Do the same with the relative
-frequency f/number of attacks and the "normalized" ratio: f/ √number of attacks.
+Using the same objects ("movable/resizable rectangle", histogram, etc.) of the previous homework 3
+draw vertically on the line chart the 2 histograms representing the distribution of the number
+of attacks at the end of the period and one internal istant for comparison.
 </p>
 <p style="font-size: 20px;">
-For any of the above 4 charts (which will be actually an instance of a unique "object", from a coder's point of view), plot
-a vertical histogram at some point x (day or attack number, user parameter) and at the last abscissa
-value and make your personal considerations on the shape of the distributions.
-Make sure that each animation is enclosed into a "frame" (a rectangle) resizable by the user, by using the mouse
-(you can make a separate, reusable, "ResizableRectangle" object for that).
+Study what happens asymptotically, for N large, and a number of systems M a sufficient to give shape to
+a simulated distribution. Make some personal considerations about the shape and the average of the distributions that you see.
 </p>
 
 <br>
 
-        <div class="centered">
-            <p style="font-size: 20px;">
-                <label for="M"> <b>Number of systems (M):</b></label>
-                <input type="number" id="M" value="5" min="1">
-            </p>
-                <p style="font-size: 20px;">
-                <label for="N"><b>Number of attacks (N):</b></label>
-                <input type="number" id="N" value="10" min="1"> 
-            </p>
-            <p style="font-size: 20px;">
-                <label for="p"b> <b>Penetration probability (p):</b> </label>
-                <input type="number" id="p" value="0.5" step="0.01" min="0" max="1">
-            </p>
-            <p style="font-size: 20px;">
-                <label for="attackNumber"> <b>Attack number to analyze: </b></label>
-                <input type="number" id="attackNumber" value="5" min="0" max="10">
-            </p>
-            <br><br>
+<div class="centered">
+    <p style="font-size: 20px;">
+        <label for="M"> <b>Number of systems (M):</b></label>
+        <input type="number" id="M" value="20" min="1">
+    </p>
+    <p style="font-size: 20px;">
+        <label for="N"><b>Number of subinterval (N):</b></label>
+        <input type="number" id="N" value="15" min="1"> 
+    </p>
+    <p style="font-size: 20px;">
+        <label for="T"><b>Period of time (T):</b></label>
+        <input type="number" id="T" value="1" min="1"> 
+    </p>
+    <p style="font-size: 20px;">
+        <label for="lambda"><b>Value of lambda (λ):</b></label>
+        <span id="lambda">--</span>
+    </p>
+    <p style="font-size: 20px;">
+        <label for="attackNumber"> <b>Attack number to analyze: </b></label>
+        <input type="number" id="attackNumber" value="5" min="0" max="10">
+    </p>
+    <br><br>
 
-            <p style="font-size: 20px;">
-                Click on the button below to update all the charts
-            </p>
+    <p style="font-size: 20px;">
+        Click on the button below tu update all the charts
+    </p>
 
-                <button onclick="updateAllCharts()">Update Chart</button>
-                <br><br>
-                <p style="font-size: 20px;">
-                    All the canvas are resizable, but you can choose to modify the aspect also using the buttons below.
-                </p>
-                <div class="centered">
-                    <button class="mybutton" onclick="setCustomScale(0.1)">10%</button>
-                    <button class="mybutton" onclick="setCustomScale(0.2)">20%</button>
-                    <button class="mybutton" onclick="setCustomScale(0.3)">30%</button>
-                    <button class="mybutton" onclick="setCustomScale(0.4)">40%</button>
-                    <button class="mybutton" onclick="setCustomScale(0.5)">50%</button>
-                    <button class="mybutton" onclick="setCustomScale(0.6)">60%</button>
-                    <button class="mybutton" onclick="setCustomScale(0.7)">70%</button>
-                    <button class="mybutton" onclick="setCustomScale(0.8)">80%</button>
-                    <button class="mybutton" onclick="setCustomScale(0.9)">90%</button>
-                    <button class="mybutton" onclick="setCustomScale(1.0)">100%</button>
-                </div>
-        </div>
-
-        
-    <script>
-            function setCustomScale(customScale) {
-                if (!isNaN(customScale) && customScale >= 0 && customScale <= 1) {
-                    // Aggiorna la variabile CSS con il valore personalizzato
-                    document.documentElement.style.setProperty('--canvas-scale', (customScale * 100) + '%');
-                } else {
-                    alert("Invalid custom scale. Please enter a number between 0 and 1.");
-                }
-            }
-
-    </script>
-       
-        <br>
-        
-        <div class="centered">
-
-            <h3>Security score</h3>
-        </div>
-
-        <div class="canvas-center">
-            <div class="canvas-container">
-                <div class="canvas-row">
-                        <canvas id="securityChartOriginal" width="800" height="400"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <div class="centered">
-
-                <h3>Cumulative frequency</h3>
-            </div>
-        <div class="canvas-center">
-            <div class="canvas-container">
-                <div class="canvas-row">
-                        <canvas id="securityChart1b" width="800" height="400"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="centered">
-
-                <h3>Relative frequency</h3>
-            </div>
-        <div class="canvas-center">
-            <div class="canvas-container">
-                <div class="canvas-row">
-                        <canvas id="securityChart1c" width="800" height="400" ></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="centered">
-
-                <h3>Normalized frequency</h3>
-            </div>
-        <div class="canvas-center">
-            <div class="canvas-container canvas">
-                <div class="canvas-row">
-                    <canvas id="securityChart1d" width="800" height="400" ></canvas>
-                </div>
-            </div>
-        </div>
-            
- 
-        <br>
-
-        <p class="centered">
-            Click on the button below to see source code.
-        </p>
+        <button onclick="updateAllCharts()">Update Chart</button>
         <br><br>
-        <button class="centered" onclick="showCode1();" >JavaScript</button> <br><br>
+        <p style="font-size: 20px;">
+            All the canvas are resizable, but you can choose to modify the aspect also using the buttons below.
+        </p>
+        <div class="centered">
+            <button class="mybutton" onclick="setCustomScale(0.1)">10%</button>
+            <button class="mybutton" onclick="setCustomScale(0.2)">20%</button>
+            <button class="mybutton" onclick="setCustomScale(0.3)">30%</button>
+            <button class="mybutton" onclick="setCustomScale(0.4)">40%</button>
+            <button class="mybutton" onclick="setCustomScale(0.5)">50%</button>
+            <button class="mybutton" onclick="setCustomScale(0.6)">60%</button>
+            <button class="mybutton" onclick="setCustomScale(0.7)">70%</button>
+            <button class="mybutton" onclick="setCustomScale(0.8)">80%</button>
+            <button class="mybutton" onclick="setCustomScale(0.9)">90%</button>
+            <button class="mybutton" onclick="setCustomScale(1.0)">100%</button>
+        </div>
+</div>
+
+
+<br><br>
+
+<div class="centered" style="display: none;">
+
+    <h3>Security score</h3>
+</div>
+
+<div class="canvas-center" style="display: none;">
+    <div class="canvas-container">
+        <div class="canvas-row">
+                <canvas id="securityChartOriginal" width="800" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="centered">
+
+        <h3>Cumulative frequency</h3>
+    </div>
+<div class="canvas-center">
+    <div class="canvas-container">
+        <div class="canvas-row">
+                <canvas id="securityChart1b" width="800" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="centered" style="display: none;" >
+
+        <h3>Relative frequency</h3>
+    </div>
+<div class="canvas-center" style="display: none;" >
+    <div class="canvas-container">
+        <div class="canvas-row">
+                <canvas id="securityChart1c" width="800" height="400" ></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="centered" style="display: none;">
+
+        <h3>Normalized frequency</h3>
+    </div>
+<div class="canvas-center" style="display: none;">
+    <div class="canvas-container canvas">
+        <div class="canvas-row">
+            <canvas id="securityChart1d" width="800" height="400" ></canvas>
+        </div>
+    </div>
+</div>
+    
+<br><br>
+<p  style="font-size: 20px;">
+    As <b>N</b> becomes large, the distribution of the number of attacks should approach a <b>Poisson distribution</b>, because the number of attacks is a sum of a large number of independent Bernoulli random variables (each representing whether an attack occurs in a given interval), which is the condition under which the Poisson distribution is a good approximation.
+</p>
+<p  style="font-size: 20px;">
+In the simulation, an “attack” is modeled as a Bernoulli trial — an experiment with two possible outcomes: “success” (an attack occurs) and “failure” (no attack). Each attack is assumed to occur independently with probability <b>lambda</b> in each of <b>T * N intervals</b>. <br><br>
+
+The expected value (or average) of a Bernoulli trial is simply the probability of success, which in this case is lambda. So the expected number of attacks in a single interval is <b>lambda</b>. <br><br>
+
+However, we’re not just looking at a single interval. We’re looking at T * N intervals. So to find the expected number of attacks over all intervals, we <b>multiply the expected number of attacks in a single interval by the total number of intervals</b>. <br> This gives us lambda * T * N. <br><br>
+
+But remember that lambda was defined as <b>T / N</b>. So if we substitute T / N for lambda in the equation, we get (T / N) * T * N, which simplifies to <b>T</b>.
+
+So the average number of attacks over the entire time period T is expected to be T, according to this model. <br><br>
+
+
+So, the average of the distribution should be approximately equal to <b>lambda * T * N = T^2 / N * N = T</b>, because each attack occurs with probability lambda_ in each of T * N intervals. <br><br>
+
+The shape of the distribution should be unimodal and skewed to the right, typical of a Poisson distribution with a relatively small mean. As the mean increases, the distribution becomes more symmetric and bell-shaped. The variance of the distribution should also be approximately equal to the mean, another characteristic of the Poisson distribution. <br><br>
+</p>
+
+<br>
+
+<p class="centered">
+    Click on the button below to see source code.
+</p>
+<br><br>
+
+<button class="centered" onclick="showCode1();" >JavaScript</button> <br><br>
 
         <div class="code-box" id="code1" style="display: none;">
 
@@ -266,43 +276,43 @@ Make sure that each animation is enclosed into a "frame" (a rectangle) resizable
                         const canvas1b = document.getElementById('securityChart1b');
                         const canvas1c = document.getElementById('securityChart1c');
                         const canvas1d = document.getElementById('securityChart1d');
-
+                        
                         const ctxOriginal = canvasOriginal.getContext('2d');
                         const ctx1b = canvas1b.getContext('2d');
                         const ctx1c = canvas1c.getContext('2d');
                         const ctx1d = canvas1d.getContext('2d');
-
+                        
                         const scaleFactor = 0.9; // Adjust this value as needed, where 1 is full size and 0.5 is half size, etc.
-
+                        
                         let isDragging = false;
                         let startX, startY;
-
+                        
                         function startDrag(e) {
                             isDragging = true;
                             startX = e.clientX;
                             startY = e.clientY;
                         }
-
+                        
                         function drag(e) {
                             if (!isDragging) return;
-
+                        
                             const dx = e.clientX - startX;
                             const dy = e.clientY - startY;
-
+                        
                             const style = e.target.parentElement.style;
                             style.left = (parseInt(style.left || 0) + dx) + 'px'; // Fixed syntax error here
                             style.top = (parseInt(style.top || 0) + dy) + 'px'; // Fixed syntax error here
-
+                        
                             startX = e.clientX;
                             startY = e.clientY;
                         }
-
-
+                        
+                        
                         function stopDrag() {
                             isDragging = false;
                         }
-
-
+                        
+                        
                         const canvasContainers = document.querySelectorAll('.canvas-container');
                         canvasContainers.forEach(container => {
                             container.addEventListener('resize', function() {
@@ -313,7 +323,7 @@ Make sure that each animation is enclosed into a "frame" (a rectangle) resizable
                             container.addEventListener('mouseup', stopDrag);
                             container.addEventListener('mouseleave', stopDrag); // Stops dragging if the mouse leaves the canvas
                         });
-
+                        
                         function scaleCanvasContent(canvas) {
                             const ctx = canvas.getContext('2d');
                             const tempCanvas = document.createElement('canvas');
@@ -321,13 +331,13 @@ Make sure that each animation is enclosed into a "frame" (a rectangle) resizable
                             tempCanvas.width = canvas.width;
                             tempCanvas.height = canvas.height;
                             tempCtx.drawImage(canvas, 0, 0);
-
+                        
                             canvas.width = canvas.parentElement.clientWidth;
                             canvas.height = canvas.parentElement.clientHeight;
-
+                        
                             ctx.drawImage(tempCanvas, 0, 0, tempCanvas.width, tempCanvas.height, 0, 0, canvas.width, canvas.height);
                         }
-
+                        
                         function simulateScore(N, p, type = "original") {
                             let score = 0;
                             const scores = [];
@@ -353,7 +363,7 @@ Make sure that each animation is enclosed into a "frame" (a rectangle) resizable
                             }
                             return scores;
                         }
-
+                        
                         function countScoreIntervals(scores) {
                             const intervals = {};
                             for (let score of scores) {
@@ -363,8 +373,8 @@ Make sure that each animation is enclosed into a "frame" (a rectangle) resizable
                             }
                             return intervals;
                         }
-
-
+                        
+                        
                         function generateColors(count) {
                             const colors = [];
                             for (let i = 0; i < count; i++) {
@@ -372,26 +382,26 @@ Make sure that each animation is enclosed into a "frame" (a rectangle) resizable
                             }
                             return colors;
                         }
-
-
+                        
+                        
                         function drawChart(M, N, p, type, ctx, canvas) {
                             const attackNumber = parseInt(document.getElementById('attackNumber').value);
-
+                        
                             // Introduce scaling factor
                             const chartWidth = canvas.width * scaleFactor ;  
                             const chartHeight = canvas.height * scaleFactor;
-
+                        
                             // Adjust for scaling factor
                             const xOffset = 50;
                             const yOffset = chartHeight / 2;
                             const xScale = (chartWidth - xOffset) / N;
                             const yScale = yOffset / N;
-
+                        
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
                             const allScores = [];
-
+                        
                             const colors = generateColors(M);
-
+                        
                         // Axis and labels
                             ctx.strokeStyle = 'black';
                             ctx.beginPath();
@@ -400,7 +410,7 @@ Make sure that each animation is enclosed into a "frame" (a rectangle) resizable
                             ctx.moveTo(xOffset, yOffset);
                             ctx.lineTo(xOffset + chartWidth, yOffset);
                             ctx.stroke();
-
+                        
                             // Drawing horizontal lines for every y-value
                             for (let i = -N; i <= N; i += 2) {
                                 ctx.strokeStyle = 'rgba(200, 200, 200, 0.5)';  // Light gray color for lines
@@ -409,8 +419,8 @@ Make sure that each animation is enclosed into a "frame" (a rectangle) resizable
                                 ctx.lineTo(xOffset + chartWidth, yOffset - i * yScale);
                                 ctx.stroke();
                             }
-
-
+                        
+                        
                             // Label the Y axis
                             ctx.textAlign = "right";
                             ctx.fillStyle = "black";
@@ -424,7 +434,7 @@ Make sure that each animation is enclosed into a "frame" (a rectangle) resizable
                                 }
                                 ctx.fillText(i, xOffset - 10, yOffset - i * yScale);
                             }
-
+                        
                             // Label the X axis
                             ctx.textAlign = "center";
                             ctx.textBaseline = "top";
@@ -436,8 +446,8 @@ Make sure that each animation is enclosed into a "frame" (a rectangle) resizable
                                 }
                                 ctx.fillText(i, xOffset + i * xScale + horizontalAdjustment, yOffset + 10);
                             }
-
-
+                        
+                        
                             // Simulate scores for all M systems and plot them
                             for (let system = 0; system < M; system++) {
                                 const scores = simulateScore(N, p, type);
@@ -445,10 +455,10 @@ Make sure that each animation is enclosed into a "frame" (a rectangle) resizable
                                 ctx.strokeStyle = colors[system];
                                 ctx.beginPath();
                                 ctx.moveTo(xOffset, yOffset);
-
+                        
                                 for (let attack = 0; attack < N; attack++) {
                                     ctx.lineTo(xOffset + (attack + 1) * xScale, yOffset - scores[attack] * yScale);
-
+                        
                                     // Save the current context state
                                     ctx.save();
                                     // Drawing a circle for each point
@@ -457,75 +467,77 @@ Make sure that each animation is enclosed into a "frame" (a rectangle) resizable
                                     ctx.fill();
                                     // Restore the context state to continue the line
                                     ctx.restore();
-
+                        
                                     // Move to the next point for line continuation
                                     ctx.moveTo(xOffset + (attack + 1) * xScale, yOffset - scores[attack] * yScale);
                                 }
-
+                        
                                 ctx.stroke();
                             }
-
-
+                        
+                        
                             // Count the final scores for the histogram
                             const endScores = allScores.map(scores => scores[N-1]);
                             const intervals = countScoreIntervals(endScores);
-
+                        
                             // Draw the histogram bars for each interval for the final scores
                             const maxBarWidth = canvas.width - (xOffset + N * xScale);
                             for (let intervalKey in intervals) {
                                 const [start, end] = intervalKey.split(',').map(Number);
                                 const midpoint = (start + end) / 2;
                                 const count = intervals[intervalKey];
-
+                        
                                 const barLength = (count / M) * maxBarWidth; 
                                 const barStartY = yOffset - midpoint * yScale;
                                 const barStartX = xOffset + N * xScale;  // Start at the last abscissa
-
+                        
                                 ctx.fillStyle = 'rgba(100, 100, 100, 0.5)';
                                 ctx.fillRect(barStartX, barStartY, barLength, yScale);
                             }
-
-
+                        
+                        
                             // Draw the histogram bars for the specific attack number
                             const attackScores = allScores.map(scores => scores[attackNumber - 1]);
                             const attackIntervals = countScoreIntervals(attackScores);
-
+                        
                             for (let intervalKey in attackIntervals) {
                                 const [start, end] = intervalKey.split(',').map(Number);
                                 const midpoint = (start + end) / 2;
                                 const count = attackIntervals[intervalKey];
-
+                        
                                 const barLength = ((count / M) * maxBarWidth);
                                 const barStartY = yOffset - midpoint * yScale;
                                 const barStartX = xOffset + attackNumber * xScale ;
-
+                        
                                 ctx.fillStyle = 'rgba(100, 150, 255, 0.5)';
                                 ctx.fillRect(barStartX, barStartY, barLength, yScale);
                             }
                         }
-
+                        
                         function updateChart() {
                             const M = parseInt(document.getElementById('M').value);
                             const N = parseInt(document.getElementById('N').value);
-                            const p = parseFloat(document.getElementById('p').value);
+                            const T = parseInt(document.getElementById('T').value);
+                            const p = T / N;
                             drawChart(M, N, p);
                         }
-
+                        
                         function updateAllCharts() {
                             const M = parseInt(document.getElementById('M').value);
                             const N = parseInt(document.getElementById('N').value);
-                            const p = parseFloat(document.getElementById('p').value);
-
+                            const T = parseInt(document.getElementById('T').value);
+                            const p = T / N;
+                        
                             drawChart(M, N, p, "original", ctxOriginal, canvasOriginal);
                             drawChart(M, N, p, "1b", ctx1b, canvas1b);
                             drawChart(M, N, p, "1c", ctx1c, canvas1c);
                             drawChart(M, N, p, "1d", ctx1d, canvas1d);
                         }
-
+                        
                         window.onload = function() {
                             updateAllCharts();
                         };
-                    </code>
+                                        </code>
                 </pre>
 
             </div>
@@ -790,8 +802,34 @@ Make sure that each animation is enclosed into a "frame" (a rectangle) resizable
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         
+<script>
+    function setCustomScale(customScale) {
+        if (!isNaN(customScale) && customScale >= 0 && customScale <= 1) {
+            // Aggiorna la variabile CSS con il valore personalizzato
+            document.documentElement.style.setProperty('--canvas-scale', (customScale * 100) + '%');
+        } else {
+            alert("Invalid custom scale. Please enter a number between 0 and 1.");
+        }
+    }
 
-   
+</script>
 
+<script>
+    // JavaScript to calculate and update the value of lambda (T / N)
+    document.getElementById("N").addEventListener("input", updateLambda);
+    document.getElementById("T").addEventListener("input", updateLambda);
+
+    function updateLambda() {
+        const N = parseFloat(document.getElementById("N").value);
+        const T = parseFloat(document.getElementById("T").value);
+        const lambda = T / N;
+
+        document.getElementById("lambda").textContent = lambda.toFixed(2);
+    }
+
+    // Initial calculation
+    updateLambda();
+</script>
+    <script src="script.js"></script>
 </body>
 </html>
