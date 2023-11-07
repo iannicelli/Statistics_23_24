@@ -148,15 +148,21 @@ a simulated distribution. Make some personal considerations about the shape and 
     </p>
     <p style="font-size: 20px;">
         <label for="N"><b>Number of subinterval (N):</b></label>
-        <input type="number" id="N" value="15" min="1"> 
+        <input type="number" id="N" value="15" min="1"> <br>
+    </p>
+    <p style="font-size: 15px;">
+        There'll be one attack in every subinterval with probability lambda
     </p>
     <p style="font-size: 20px;">
         <label for="T"><b>Period of time (T):</b></label>
         <input type="number" id="T" value="1" min="1"> 
     </p>
+    <p style="font-size: 15px;">
+        Let's assume 1 T is 1 year
+    </p>
     <p style="font-size: 20px;">
         <label for="lambda"><b>Value of lambda (λ):</b></label>
-        <span id="lambda">--</span>
+        <input type="number" id="lambda" value="5" min="1">
     </p>
     <p style="font-size: 20px;">
         <label for="attackNumber"> <b>Attack number to analyze: </b></label>
@@ -814,22 +820,6 @@ The shape of the distribution should be unimodal and skewed to the right, typica
 
 </script>
 
-<script>
-    // JavaScript to calculate and update the value of lambda (T / N)
-    document.getElementById("N").addEventListener("input", updateLambda);
-    document.getElementById("T").addEventListener("input", updateLambda);
-
-    function updateLambda() {
-        const N = parseFloat(document.getElementById("N").value);
-        const T = parseFloat(document.getElementById("T").value);
-        const lambda = T / N;
-
-        document.getElementById("lambda").textContent = lambda.toFixed(2);
-    }
-
-    // Initial calculation
-    updateLambda();
-</script>
     <script src="script.js"></script>
 </body>
 </html>

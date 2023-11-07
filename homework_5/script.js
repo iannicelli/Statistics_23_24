@@ -244,7 +244,8 @@ function updateChart() {
     const M = parseInt(document.getElementById('M').value);
     const N = parseInt(document.getElementById('N').value);
     const T = parseInt(document.getElementById('T').value);
-    const p = T / N;
+    const lambda = parseInt(document.getElementById('lambda').value);
+    const p = lambda * (T / N);
     drawChart(M, N, p);
 }
 
@@ -252,7 +253,8 @@ function updateAllCharts() {
     const M = parseInt(document.getElementById('M').value);
     const N = parseInt(document.getElementById('N').value);
     const T = parseInt(document.getElementById('T').value);
-    const p = T / N;
+    const lambda = parseInt(document.getElementById('lambda').value);
+    const p = lambda * (T / N);
 
     drawChart(M, N, p, "original", ctxOriginal, canvasOriginal);
     drawChart(M, N, p, "1b", ctx1b, canvas1b);
