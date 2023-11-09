@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../photo1697031896 - Copia.jpeg" type="image/x-icon">
 
-    <title>homework_5</title>
+    <title>Homework 5.2</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -92,6 +92,11 @@
             background-color: black;
         }
 
+        .reference {
+            font-size: 80%; /* Adjust the font size as needed */
+        }
+
+
     </style>
     <link rel="stylesheet" href="../style.css">
     <script src="excel-reader.js"></script>
@@ -122,13 +127,13 @@
 
     <p style="font-size: 20px;">
 
-        A <b>Poisson point process</b> is a type of random mathematical object that consists of <b>points randomly located</b> on a mathematical space[1]. It’s often used as a mathematical model for seemingly random processes in numerous disciplines such as astronomy, biology, ecology, geology, physics, economics, image processing, and telecommunications[1]. <br><br>
+        A <b>Poisson point process</b> is a type of random mathematical object that consists of <b>points randomly located</b> on a mathematical space<span class="reference">[1]</span>. It’s often used as a mathematical model for seemingly random processes in numerous disciplines such as astronomy, biology, ecology, geology, physics, economics, image processing, and telecommunications<span class="reference">[1]</span>. <br><br>
 
         <img src="poisson.png" style="width: 50%; height: 50%; display: block; margin-left: auto; margin-right: auto;"> <br><br>
         
         In the context of our exercise, the attacks on the servers can be thought of as a Poisson point process. Each attack is a “point”, and these points (attacks) are randomly located in time over the interval T. The <b>key property</b> of a Poisson point process is that <b>the points occur independently</b> of one another[1], which is similar to the assumption in our exercise that attacks occur independently with probability λ in each interval. <br><br>
         
-        The Poisson point process has interesting mathematical properties [2], one of which is that the number of points (in this case, attacks) in a region of finite size (the time period T) is a random variable with a Poisson distribution [1]. This aligns with the observation that as N becomes large, the distribution of the number of attacks should approach a Poisson distribution. <br><br>
+        The Poisson point process has interesting mathematical properties<span class="reference">[2]</span>, one of which is that the number of points (in this case, attacks) in a region of finite size (the time period T) is a random variable with a Poisson distribution<span class="reference">[1]</span>. This aligns with the observation that as N becomes large, the distribution of the number of attacks should approach a Poisson distribution. <br><br>
         
         <img src="cubes.jpg" style="width: 50%; height: 50%; display: block; margin-left: auto; margin-right: auto;"> <br><br>
         To verify whether our simulated distributions come close to the theoretical asymptotic distribution, we could compare the mean and variance of your simulated distributions to the theoretical mean and variance of the Poisson distribution. For a Poisson distribution, the <b>mean and variance are both equal to the rate parameter (in this case, λT)</b>. <br>If the mean and variance of our simulated distributions are close to λT, this would suggest that they are indeed approximating a Poisson distribution. <br><br>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../photo1697031896 - Copia.jpeg" type="image/x-icon">
+
+    <title>Homework 6.2</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        footer {
+            background-color: rgb(130, 23, 41);
+            color: #fff;
+            padding: 10px; /* Aggiungi spazio intorno ai contenuti del footer */
+        }
+
+        footer div {
+            display: inline-block; /* Posiziona gli elementi div in linea */
+            margin-right: 20px; /* Aggiungi spazio tra gli elementi a sinistra */
+            margin-top: 5px;
+        }
+
+        select {
+            background-color: rgb(130, 23, 41);
+            color: #fff;
+            border: none;
+            margin-top: 5px;
+        }
+
+        .code-box {
+            background-color: #333; /* Sfondo scuro per la box del codice */
+            color: #fff;
+            padding: 10px;
+            margin: 10px 70px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 13px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .canvas-container {
+            display: inline-block;
+            resize: both;
+            overflow: auto;
+            border: 1px solid #ccc;
+            margin: 10px;
+            position: relative;
+            background-color: whitesmoke;
+            width: var(--canvas-scale, 60%);
+            height: var(--canvas-scale, 60%);
+            display: block;
+        }
+
+        .canvas-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .canvas-center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .canvas-container canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .mybutton{
+            background-color: black;
+        }
+
+                /* Style to float the image to the left */
+                img {
+            float: left;
+            margin-right: 20px; /* Adjust the margin as needed */
+        }
+
+        /* Clear the float to prevent subsequent elements from wrapping around the image */
+        .clear {
+            clear: both;
+        }
+
+        .reference {
+            font-size: 80%; /* Adjust the font size as needed */
+        }
+
+    </style>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <footer style="padding: 10px 0;">
+        <div>
+            <img src="../photo1697031896.jpeg" style="width: 110px; height: 45px;">
+    
+            <a href="../index.html">
+                <button>Home</button>
+            </a>
+        
+            <span style="line-height: 45px; margin-left: 30px; margin-right: 30px;">Statistics 2023/2024</span>
+            <span style="line-height: 45px; margin-right: 100px;">Chiara Iannicelli 1957045</span>
+        </div>
+        <div>
+    </footer>
+    
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-right: 20px;">
+        <h1>Homework 6.2</h1>
+        <a href="../homework_6/homework_6.html">
+            <button class="centered-button black-button">Homework 6.1</button>
+        </a>
+    </div>
+
+    <p style="font-size: 20px;">
+
+        <b>Gambler's Ruin Problem </b><br>
+
+        The Gambler’s Ruin Problem is a fascinating concept in probability theory that has been studied for centuries. It deals with the question of how long a gambler can expect to play a game of chance before they go broke <span class="reference">[1]</span>. <br><br>
+
+        <img src="OIP.jpeg" alt="Description of the image">
+        <p style="font-size: 20px;">
+            The problem was first mentioned in a letter from Blaise Pascal to Pierre Fermat in 1656 <span class="reference">[2]</span>.
+            The concept has specific relevance for gamblers, but it also leads to mathematical theorems with wide
+            application and many related results in probability and statistics <span class="reference">[2]</span>. Huygens’s result in particular
+            led to important advances in the mathematical theory of probability <span class="reference">[2]</span>. <br><br>
+
+             The problem is often applied to gamblers with finite capital playing against a bookie or casino assumed to have “infinite” or much larger amount of capital available. It can then be proven the probability of the gamblers eventual ruin tends to 1 even in the scenario where the game is fair <span class="reference">[2]</span>. <br><br>
+
+        </p>
+        <div class="clear"></div>
+    </p>
+    <p style="font-size: 20px;">
+        
+        In a recent research paper titled “Gambler’s Ruin and the ICM”, Persi Diaconis and Stewart N. Ethier consider the gambler’s ruin problem with three players <span class="reference">[3]</span>. They seek approximations (and exact formulas) for the elimination order probabilities<span class="reference">[3]</span>. They found that the independent chip model (ICM), a frequently used approximation, is inadequate and proposed a regression adjustment, which seems to give good approximations to the elimination order probabilities<span class="reference">[3]</span>. <br><br>
+
+        <b> Problem Statement</b><br>
+       
+        The Gambler’s Ruin Problem in it'ss most basic form consists of two gamblers A and B who are playing a probabilistic game multiple times against each other. Every time the game is played, there is a probability p (0 < p < 1) that gambler A will win against gambler B. Likewise, using basic probability axioms, the probability that gambler B will win is 1 - p. Each gambler also has an initial wealth that limits how much they can bet. The total combined wealth is denoted by k and gambler A has an initial wealth denoted by i, which implies that gambler B has an initial wealth of k - i. Wealth is required to be positive. The last condition we apply to this problem is that both gamblers will play indefinitely until one of them has lost all their initial wealth and thus cannot play anymore. <br><br>
+
+        Imagine that gambler A’s initial wealth i is an integer dollar amount and that each game is played for one dollar. That means that gambler A will have to play at least i games for their wealth to drop to zero. The probability that they win one dollar in each game is p, which will be equal to 1/2 if the game is fair for both gamblers. If p > 1/2, then gambler A has a systematic advantage and if p < 1/2 then gambler A has a systematic disadvantage. The series of games can only end in two outcomes: gambler A has a wealth of k dollars (gambler B lost all their money), or gambler A has a wealth of 0 dollars (gambler B has all the wealth). The main focus of the analysis is to determine the probability that gambler A will end up with a wealth of k dollars instead of 0 dollars. Regardless of the outcome, one of the gamblers will end up in financial ruin, hence the name Gambler’s Ruin. <br><br>
+    
+        <img src="WhatsApp Image 2023-11-09 at 15.13.00.jpeg" alt="">
+
+        <br><br>
+        <b> Other formulations</b><br>
+        Another research presents a novel version of the classic three-player game with interest lies in a specific player<span class="reference">[4]</span>. They determine the ruin probabilities and expected durations of the game given that our player (i.e. the gambler or the casino’s player) wins or loses<span class="reference">[4]</span>. <br><br>
+
+        <br><br>
+        The Gambler’s Ruin problem has several formulations, each with its own nuances and implications. Here are a few: <br><br>
+
+        1. <b>Negative Expected Value</b>: A gambler playing a game with negative expected value will eventually go broke, regardless of their betting system. This concept was initially stated as: A persistent gambler who raises their bet to a fixed fraction of the gambler’s bankroll after a win, but does not reduce it after a loss, will eventually and inevitably go broke, even if each bet has a positive expected value. <br><br>
+
+        2. <b>Infinite Wealth Opponent</b>: Another statement of the concept is that a persistent gambler with finite wealth, playing a fair game (that is, each bet has expected value of zero to both sides) will eventually and inevitably go broke against an opponent with infinite wealth. <br><br>
+
+        3. <b>Weighted Coin Toss</b>: One can imagine the random walk as representing a sequence of tosses of a weighted coin, with a head appearing with probability p and a tail appearing with probability q. An alternative formulation of this situation is that of a gambler playing a sequence of games against an adversary where, in each game, the gambler has probability p of winning. <br><br>
+    
+        4. <b>Gambler’s Ruin Formula</b>: To calculate the probability of the gambler reaching their goal, we can use the Gambler’s Ruin formula: Probability of reaching goal = (Goal – Starting bankroll) / (Goal + Starting bankroll). <br><br>
+
+        5. <b>Second-Order Linear Recurrence</b>: The problem can also be formulated as a second-order linear recurrence whose general solution is P(Xn) = a + bn for n = 0, 1, …, 8, and some constants a and b. <br><br>
+
+
+        In conclusion, the Gambler’s Ruin Problem is a significant concept in probability theory with wide-ranging applications. It continues to be an active area of research, with new insights and methodologies being developed to understand and solve this classic problem. <br><br>
+    </p>
+
+    
+    <h2>Source</h2>
+    <p style="font-size: 15px;">
+        [1]. https://en.wikipedia.org/wiki/Gambler%27s_ruin<br>
+        [2]. https://maa.org/sites/default/files/images/upload_library/46/NCTM/The-Pascal-Fermat-Correspondence.pdf<br>
+        [3]. https://arxiv.org/abs/2011.07610 <br>
+
+    </p>
+
+
+
+    <br><br>
+
+    
+</body>
+</html>
