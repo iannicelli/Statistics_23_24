@@ -115,7 +115,7 @@ function drawChart(M, N, p, S, ctx, canvas, P_values) {
     ctx.stroke();
 
     // Drawing horizontal lines for every y-value
-    for (let i = -N; i <= N; i += 2) {
+    for (let i = -N; i <= N; i += 1) {
         if (i == S) {
             ctx.strokeStyle = 'rgba(0, 255, 0, 1)';
         } else if (i == 20 || i == 30 || i == 40 || i == 50 || i == 60 || i == 70 || i == 80 || i == 90 || i == 100) {
@@ -190,7 +190,7 @@ function drawChart(M, N, p, S, ctx, canvas, P_values) {
         const count = counts[threshold];
         const barLength = (count / M) * maxBarWidth;
         const barWidth = yScale * 10; // Assuming an interval of 10
-        const barStartY = threshold < 0 ? yOffset - threshold * yScale : yOffset - threshold * yScale - 55;
+        const barStartY = threshold < 0 ? yOffset - threshold * yScale : yOffset - threshold * yScale - 17*(100/N);
         const barStartX = xOffset + N * xScale;
 
         ctx.fillStyle = 'rgba(100, 100, 100, 0.8)';
