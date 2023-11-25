@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../photo1697031896 - Copia.jpeg" type="image/x-icon">
+
+    <title>Homework 7.1</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+    <script src="for2d.js"></script>
+    <script src="forChart.js"></script>
+    <script src="forDistribution.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        footer {
+            background-color: rgb(130, 23, 41);
+            color: #fff;
+            padding: 10px; /* Aggiungi spazio intorno ai contenuti del footer */
+        }
+
+        footer div {
+            display: inline-block; /* Posiziona gli elementi div in linea */
+            margin-right: 20px; /* Aggiungi spazio tra gli elementi a sinistra */
+            margin-top: 5px;
+        }
+
+        select {
+            background-color: rgb(130, 23, 41);
+            color: #fff;
+            border: none;
+            margin-top: 5px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        .code-box {
+            background-color: #333; /* Sfondo scuro per la box del codice */
+            color: #fff;
+            padding: 10px;
+            margin: 10px 70px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 13px;
+        }
+                /* Style to float the image to the left */
+                img {
+            float: left;
+            margin-right: 20px; /* Adjust the margin as needed */
+        }
+
+        input[type="radio"] {
+      width: 60px;
+      grid-column: input;
+    }
+
+    label {
+      font-weight: bold;
+      grid-column: label;
+      alignment: top;
+      color: rgb(130, 23, 41);
+      display: inline-block;
+    }
+    canvas {
+      background-color: white;
+      border: 1px solid rgb(130, 23, 41);
+      vertical-align: top;
+      margin-left: 10px;
+      float: left;
+    }
+
+    
+    .canvas-container {
+            display: inline-block;
+            resize: both;
+            overflow: auto;
+            border: 1px solid #ccc;
+            margin: 10px;
+            position: relative;
+            background-color: whitesmoke;
+            width: var(--canvas-scale, 60%);
+            height: var(--canvas-scale, 60%);
+            display: block;
+        }
+
+        .canvas-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .canvas-center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .canvas-container canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+    <link rel="stylesheet" href="./../style.css">
+    <script src="excel-reader.js"></script>
+</head>
+<body>
+    <!-- Contenuto principale della pagina -->
+    <footer style="padding: 10px 0;">
+    <div>
+        <img src="./../photo1697031896.jpeg" style="width: 110px; height: 45px;">
+        <a href="./../index.html">
+            <button>Home</button>
+        </a>
+        <span style="line-height: 45px; margin-left: 30px; margin-right: 30px;">Statistics 2023/2024</span>
+        <span style="line-height: 45px; margin-right: 100px;">Chiara Iannicelli 1957045</span>
+    </div>
+    </footer>
+
+    <br>
+
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-right: 20px;">
+        <h1>Homework 7.1</h1>
+
+      </div>
+
+      <p style="font-size: 18px;">
+        Consider a scheme similar to Homework 3. <br><br>
+  
+        First of all realize that the general scheme that you used so far (random walk and also Poisson process, etc.), can, more in general,
+        be used for any stochastic differential equations SDE (see, for instance, Euler–Maruyama method https://en.wikipedia.org/wiki/Euler%E2%80%93Maruyama_method). <br><br>
+        
+        In other words, with minor additions to your program you can now generalize this tool to simulate almost any stochastic
+        differential equations of interest for many applications. <br><br>
+        
+        Create a web only version where you allow the user to explore (selectable by user) any useful stochastic process. <br><br>
+        
+        Do a research on the web and include any SDE that you think its interesting. <br><br>
+
+      </p>
+      
+      <hr>
+
+      <p style="font-size: 17px;">
+        For this homework I decided to implement the following stochastic processes: <br><br>
+        
+                - <b> Brownian Motion (Wiener standard): </b>  Standard BM ≈ Σ N(0, dt), where dt=1/n, mean=0, var=1 at last time n, taken as 1 <br><br>
+                - <b> Brownian Motion (general, arithmetic): </b> General (arithmetic) Brownian motion ≈ Σ N(μ dt, σ² dt), where dt=1/n, mean=μ, var=σ² at last time n, taken as 1 <br><br>
+                - <b> Brownian Motion (geometric): </b> Geometric Brownian motion ≈ S_t = S_0 exp((μ - σ²/2)dt + σ W_t), where W_t is a standard BM)) <br><br>
+                - <b> Ornstein-Uhlenbeck:</b>  Ornstein-Uhlenbeck process ≈ X_t = θ(μ - X_t)dt + σ dW_t, where W_t is a standard BM)) <br><br>
+            
+        
+    </p>
+
+    <hr>
+    <br>
+
+      <div class="centered">
+        <label for="inputTimes">Times:</label>
+        <input type="number" id="inputTimes" value=100 min="10" max="10000" step="10">
+        <label for="inputPaths">Sample paths:</label>
+        <input type="number" id="inputPaths" value=100 min="10" max="10000" step="10">
+
+        <br><br>
+
+        <label for="inputMu">μ (drift):</label>
+        <input type="number" id="inputMu" value=0 min="-20" max="20" step=".1">
+        <label for="inputSigma">σ (diffusion):</label>
+        <input type="number" id="inputSigma" value=1 min="0.1" max="1000" step=".1">
+        <label for="inputLambda">λ:</label>
+        <input type="number" id="inputLambda" value=50 min="1" max="1000" step="1">
+        <label for="inputLambda">&#952;:</label>
+        <input type="number" id="inputTheta" value=2.0 min="0.2" max="20" step="0.1">
+        <br><br>
+
+        <button id="buttonRecompute" type="button" style="margin-left: 10px; margin-right: 20px">New Graphic</button>
+    </div>
+
+    <br><br>
+        
+        <div class="centered">
+            
+            <input type="radio" id="check_BROWNIAN_MOTION_STANDARD" name="gruppo" checked>
+            <label for="check_BROWNIAN_MOTION_STANDARD">Standard Brownian Motion[µ=0, σ=1]</label>
+            
+            <input type="radio" id="check_BROWNIAN_MOTION_GEN" name="gruppo">
+            <label for="check_BROWNIAN_MOTION_GEN">Arithmetic Brownian Motion [choose µ, σ]</label>
+            
+            <input type="radio" id="check_BROWNIAN_MOTION_GEO" name="gruppo">
+            <label for="check_BROWNIAN_MOTION_GEO">Geometric Brownian Motion [choose µ, σ]</label>
+            
+            <input type="radio" id="check_ORNSTEIN_UHLENBECK" name="gruppo">
+            <label for="check_ORNSTEIN_UHLENBECK"> Ornstein-Uhlenbeck [choose &#952;, µ, σ]</label>
+            
+            
+        
+        
+            <br><br>
+        </div>
+        
+
+        <div class="canvas-center">
+            <div class="canvas-container">
+                <div class="canvas-row">
+                        <canvas id="Graphic" width="900" height="600" oncontextmenu="return false;"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="centered">
+            <p style="font-size: 20px;">
+                The canva is resizable, but you can choose to modify the aspect also using the buttons below.
+            </p>
+            <br>
+                <button class="mybutton" onclick="setCustomScale(0.1)">10%</button>
+                <button class="mybutton" onclick="setCustomScale(0.2)">20%</button>
+                <button class="mybutton" onclick="setCustomScale(0.3)">30%</button>
+                <button class="mybutton" onclick="setCustomScale(0.4)">40%</button>
+                <button class="mybutton" onclick="setCustomScale(0.5)">50%</button>
+                <button class="mybutton" onclick="setCustomScale(0.6)">60%</button>
+                <button class="mybutton" onclick="setCustomScale(0.7)">70%</button>
+                <button class="mybutton" onclick="setCustomScale(0.8)">80%</button>
+                <button class="mybutton" onclick="setCustomScale(0.9)">90%</button>
+                <button class="mybutton" onclick="setCustomScale(1.0)">100%</button>
+            </div>
+
+            <br><br>
+
+        <script src="script.js"> </script>
+
+        <script>
+            function setCustomScale(customScale) {
+                if (!isNaN(customScale) && customScale >= 0 && customScale <= 1) {
+                    // Aggiorna la variabile CSS con il valore personalizzato
+                    document.documentElement.style.setProperty('--canvas-scale', (customScale * 100) + '%');
+                } else {
+                    alert("Invalid custom scale. Please enter a number between 0 and 1.");
+                }
+            }
+
+    </script>
+
+</body>
+</html>
