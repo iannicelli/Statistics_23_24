@@ -295,7 +295,6 @@ function creaTaccheELegenda() {
     ctx.fillText(myVariate_MaxView.toFixed(1), rectChart.right() + 10, rectChart.y - 7);
     ctx.fillText(myVariate_MinView.toFixed(1), rectChart.right() + 10, rectChart.bottom() - 7);
     ctx.fillStyle = "black";
-    ctx.fillText("paths: " + currentPathNumber + "  avg = " + avgAtLastTime.toFixed(2) + "  var = " + (ssAtLastTime / numberOfSamplePaths).toFixed(2), rectChart.x + 350, rectChart.bottom() + 30);
     ctx.fillStyle = "black";
     ctx.fillText("",rectChart.x + 100, rectChart.y + 15);
 
