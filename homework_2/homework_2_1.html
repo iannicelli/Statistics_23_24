@@ -50,15 +50,19 @@
             background-color: #333; /* Sfondo scuro per la box del codice */
             color: #fff;
             padding: 10px;
-            margin: 10px 70px;
+            margin: 10px 10px;
             border-radius: 5px;
             font-family: monospace;
             font-size: 13px;
         }
                 /* Style to float the image to the left */
                 img {
-            float: left;
+
             margin-right: 20px; /* Adjust the margin as needed */
+        }
+
+        .logo{
+            float: left;
         }
     </style>
     <link rel="stylesheet" href="./../style.css">
@@ -68,7 +72,7 @@
     <!-- Contenuto principale della pagina -->
     <footer style="padding: 10px 0;">
     <div>
-        <img src="./../photo1697031896.jpeg" style="width: 110px; height: 45px;">
+        <img id="logo" src="./../photo1697031896.jpeg" style="width: 110px; height: 45px;">
         <a href="./../index.html">
             <button>Home</button>
         </a>
@@ -124,9 +128,29 @@
 <br><br>
  <!-- codice js -->
 
-<div class="code-box">
-    <pre>
-        <code class="language-javascript">
+ <br>
+ <p class="centered">
+    Click on the button below to visualize the joint distribution
+</p>
+<input type="file" id="excel-file-input_2" accept=".xlsx" style="display: none;"> <br>
+<button class="centered" onclick="calculateCombinationsCount() " style="display: none;">Joint</button>
+
+<table id="resultsJoint">
+    <tbody>
+        
+    </tbody>
+</table>
+
+<button class="centered" onclick="showImage(); showCode();" >Joint</button> <br><br>
+
+<img id="imageToShow" src="quattro.jpeg" alt="first" width="1400" height="1000" class="centered" style="display: none;">
+
+
+ <div class="code-box" id="code1" >
+
+     <div class="language-javascript">
+         <pre>
+             <code>
             function loadExcelFile() {
                 var input = document.getElementById('excel-file-input'); // Input file
                 var file = input.files[0];
@@ -396,22 +420,6 @@
 </div>
 
 
-<p class="centered">
-    Click on the button below to visualize the joint distribution
-</p>
-<input type="file" id="excel-file-input_2" accept=".xlsx" style="display: none;"> <br>
-<button class="centered" onclick="calculateCombinationsCount() " style="display: none;">Joint</button>
-
-<table id="resultsJoint">
-    <tbody>
-        
-    </tbody>
-</table>
-
-
-<button class="centered" onclick="showImage(); showCode();" >Joint</button> <br><br>
-
-<img id="imageToShow" src="quattro.jpeg" alt="first" width="1400" height="1000" class="centered" style="display: none;">
 
 <div class="code-box" id="code" style="display: none;">
     <pre>
@@ -529,6 +537,16 @@
     }
             function showCode() {
                  var codeElement = document.getElementById('code');
+                 if (codeElement.style.display === 'none') {
+                    codeElement.style.display = 'block'; // Mostra il codice
+                } else {
+                    codeElement.style.display = 'none'; // Nascondi il codice
+                }
+             }
+
+             
+            function showCode1() {
+                 var codeElement = document.getElementById('code1');
                  if (codeElement.style.display === 'none') {
                     codeElement.style.display = 'block'; // Mostra il codice
                 } else {

@@ -85,7 +85,10 @@ const ChosenVariate = Object.freeze({
     ORNSTEIN_UHLENBECK: Symbol("ornsteinUhlenbeck")
 });
 
-const buttonRecompute = document.getElementById("buttonRecompute");
+const buttonRecompute_1 = document.getElementById("buttonRecompute_1");
+const buttonRecompute_2 = document.getElementById("buttonRecompute_2");
+const buttonRecompute_3 = document.getElementById("buttonRecompute_3");
+const buttonRecompute_4 = document.getElementById("buttonRecompute_4");
 const inputMu = document.getElementById("inputMu");
 const inputSigma = document.getElementById("inputSigma");
 const inputLambda = document.getElementById("inputLambda");
@@ -109,7 +112,6 @@ let numberOfSamplePaths;
 let allPaths;
 let myRandomJump;
 let myVariate;
-let representAsScalingLimit;
 let myProcessValueType;
 let myProcessValueDescription;
 let myVariate_MinView;
@@ -130,11 +132,14 @@ let mul = false;
 
 const rectChart = new rectangular(20, 30, Graphic.width - 200, Graphic.height - 30 - 40);
 
-buttonRecompute.onclick = mainTask;
+buttonRecompute_1.onclick = mainTask_1;
+buttonRecompute_2.onclick = mainTask_2;
+buttonRecompute_3.onclick = mainTask_3;
+buttonRecompute_4.onclick = mainTask_4;
 
-mainTask();
 
-function acquisizioneScelteUtente() {
+
+function BROWNIAN_MOTION_STANDARD() {
 
     mu = Number(inputMu.value);
     sigma = Number(inputSigma.value);
@@ -153,46 +158,14 @@ function acquisizioneScelteUtente() {
     const sigma_sqrt_dt = sigma * Math.sqrt(dt);          //varianza proporzionale al tempo
     const sqrt_dt = Math.sqrt(dt);              //caso di sigma=1
 
-    if (check_BROWNIAN_MOTION_STANDARD.checked) {
+
         myProcessValueDescription = 'Standard BM ≈ Σ N(0, dt), where dt=1/n, mean=0, var=1 at last time n, taken as 1';
         myProcessValueType = ChosenVariate.BROWNIAN_MOTION_STANDARD;
-        representAsScalingLimit = true;
         myVariate_MinView = -sigmaMultipleForRange;
         myVariate_MaxView = sigmaMultipleForRange;
         myRandomJump = () => random_function.gaussian(0, sqrt_dt);
         myVariate = (sumOfJumps) => sumOfJumps;
         mul = false;
-
-    } else if (check_BROWNIAN_MOTION_GEN.checked) {
-        myProcessValueDescription = "general (arithmetic) Brownian motion ≈ Σ N(μ dt, σ² dt), where dt=1/n, mean=μ, var=σ² at last time n, taken as 1";
-        myProcessValueType = ChosenVariate.BROWNIAN_MOTION_GENERAL;
-        representAsScalingLimit = true;
-        myVariate_MinView = Math.min(0, mu - sigmaMultipleForRange * sigma);
-        myVariate_MaxView = Math.max(0, mu + sigmaMultipleForRange * sigma);
-        myRandomJump = () => random_function.gaussian(mu * dt, sigma_sqrt_dt);
-        myVariate = (sumOfJumps) => sumOfJumps;
-        mul = false;
-
-    } else if(check_BROWNIAN_MOTION_GEO.checked){
-        myProcessValueDescription = "Geometric Brownian motion ≈ S_t = S_0 exp((μ - σ²/2)dt + σ W_t), where W_t is a standard BM))";
-        myProcessValueType = ChosenVariate.BROWNIAN_MOTION_GEO;
-        representAsScalingLimit = true;
-        myVariate_MinView = 0;
-        myVariate_MaxView = Math.exp((mu + 3 * sigma) * n * dt);
-        myRandomJump = () => Math.exp(random_function.gaussian((mu - sigma * sigma /2) * dt, sigma_sqrt_dt));
-        myVariate = (productOfJumps) => productOfJumps;
-        mul = true;
-    
-    } else if(check_ORNSTEIN_UHLENBECK){
-        myProcessValueDescription = "Ornstein-Uhlenbeck process ≈ X_t = θ(μ - X_t)dt + σ dW_t, where W_t is a standard BM))";
-        myProcessValueType = ChosenVariate.ORNSTEIN_UHLENBECK;
-        representAsScalingLimit = true;
-        myVariate_MinView = mu - sigmaMultipleForRange * sigma;
-        myVariate_MaxView = mu + sigmaMultipleForRange * sigma;
-        myRandomJump = (currentX) => random_function.gaussian(theta * (mu - currentX) * dt, sigma_sqrt_dt);
-        myVariate = (sumOfJumps) => sumOfJumps;
-        mul = false;
-    }
 
     myProcessValue_Range = myVariate_MaxView - myVariate_MinView;
     intervalSize = myProcessValue_Range / NumberOfClasses;
@@ -201,9 +174,115 @@ function acquisizioneScelteUtente() {
 
 }
 
-function mainTask() {
+function BROWNIAN_MOTION_GEN() {
 
-    acquisizioneScelteUtente();     //acquisizione nuove scelte
+  mu = Number(inputMu.value);
+  sigma = Number(inputSigma.value);
+  lambda = Number(inputLambda.value);
+  theta = Number(inputTheta.value);
+  n = Math.round(Number(inputTimes.value));  
+  numberOfSamplePaths = Number(inputPaths.value);
+  NumberOfClasses = Math.max(100, numberOfSamplePaths / 60);
+
+  timeForHistogram_t = Math.round(n / 2);
+  timeForHistogram_n = n;
+
+  const sigmaMultipleForRange = 4;
+
+  const dt = 1 / n;
+  const sigma_sqrt_dt = sigma * Math.sqrt(dt);          //varianza proporzionale al tempo
+  const sqrt_dt = Math.sqrt(dt);              //caso di sigma=1
+
+
+      myProcessValueDescription = "general (arithmetic) Brownian motion ≈ Σ N(μ dt, σ² dt), where dt=1/n, mean=μ, var=σ² at last time n, taken as 1";
+      myProcessValueType = ChosenVariate.BROWNIAN_MOTION_GENERAL;
+      myVariate_MinView = Math.min(0, mu - sigmaMultipleForRange * sigma);
+      myVariate_MaxView = Math.max(0, mu + sigmaMultipleForRange * sigma);
+      myRandomJump = () => random_function.gaussian(mu * dt, sigma_sqrt_dt);
+      myVariate = (sumOfJumps) => sumOfJumps;
+      mul = false;
+
+  myProcessValue_Range = myVariate_MaxView - myVariate_MinView;
+  intervalSize = myProcessValue_Range / NumberOfClasses;
+
+  [x_Origin, y_Origin] = for2d.transformXYToViewport([0, 0], 0, n, myVariate_MinView, myProcessValue_Range, rectChart);
+
+}
+
+function BROWNIAN_MOTION_GEO() {
+
+  mu = Number(inputMu.value);
+  sigma = Number(inputSigma.value);
+  lambda = Number(inputLambda.value);
+  theta = Number(inputTheta.value);
+  n = Math.round(Number(inputTimes.value));  
+  numberOfSamplePaths = Number(inputPaths.value);
+  NumberOfClasses = Math.max(100, numberOfSamplePaths / 60);
+
+  timeForHistogram_t = Math.round(n / 2);
+  timeForHistogram_n = n;
+
+  const sigmaMultipleForRange = 4;
+
+  const dt = 1 / n;
+  const sigma_sqrt_dt = sigma * Math.sqrt(dt);          //varianza proporzionale al tempo
+  const sqrt_dt = Math.sqrt(dt);              //caso di sigma=1
+
+
+      myProcessValueDescription = "Geometric Brownian motion ≈ S_t = S_0 exp((μ - σ²/2)dt + σ W_t), where W_t is a standard BM))";
+      myProcessValueType = ChosenVariate.BROWNIAN_MOTION_GEO;
+      myVariate_MinView = 0;
+      myVariate_MaxView = Math.exp((mu + 3 * sigma) * n * dt);
+      myRandomJump = () => Math.exp(random_function.gaussian((mu - sigma * sigma /2) * dt, sigma_sqrt_dt));
+      myVariate = (productOfJumps) => productOfJumps;
+      mul = true;
+
+  myProcessValue_Range = myVariate_MaxView - myVariate_MinView;
+  intervalSize = myProcessValue_Range / NumberOfClasses;
+
+  [x_Origin, y_Origin] = for2d.transformXYToViewport([0, 0], 0, n, myVariate_MinView, myProcessValue_Range, rectChart);
+
+}
+
+function ORNSTEIN_UHLENBECK() {
+
+  mu = Number(inputMu.value);
+  sigma = Number(inputSigma.value);
+  lambda = Number(inputLambda.value);
+  theta = Number(inputTheta.value);
+  n = Math.round(Number(inputTimes.value));  
+  numberOfSamplePaths = Number(inputPaths.value);
+  NumberOfClasses = Math.max(100, numberOfSamplePaths / 60);
+
+  timeForHistogram_t = Math.round(n / 2);
+  timeForHistogram_n = n;
+
+  const sigmaMultipleForRange = 4;
+
+  const dt = 1 / n;
+  const sigma_sqrt_dt = sigma * Math.sqrt(dt);          //varianza proporzionale al tempo
+  const sqrt_dt = Math.sqrt(dt);              //caso di sigma=1
+
+
+      myProcessValueDescription = "Ornstein-Uhlenbeck process ≈ X_t = θ(μ - X_t)dt + σ dW_t, where W_t is a standard BM))";
+      myProcessValueType = ChosenVariate.ORNSTEIN_UHLENBECK;
+      myVariate_MinView = mu - sigmaMultipleForRange * sigma;
+      myVariate_MaxView = mu + sigmaMultipleForRange * sigma;
+      myRandomJump = (currentX) => random_function.gaussian(theta * (mu - currentX) * dt, sigma_sqrt_dt);
+      myVariate = (sumOfJumps) => sumOfJumps;
+      mul = false;
+
+  myProcessValue_Range = myVariate_MaxView - myVariate_MinView;
+  intervalSize = myProcessValue_Range / NumberOfClasses;
+
+  [x_Origin, y_Origin] = for2d.transformXYToViewport([0, 0], 0, n, myVariate_MinView, myProcessValue_Range, rectChart);
+
+}
+
+function mainTask_1() {
+
+  console.log("mainTask_1");
+    BROWNIAN_MOTION_STANDARD();     
     intervals_t = [];               //intervalli per distribuzione tempo intermedio
     intervals_n = [];               //intervalli per distribuzione tempo finale
     currentPathNumber = 0;
@@ -229,13 +308,100 @@ function mainTask() {
 
 }
 
+function mainTask_2() {
+
+  console.log("mainTask_2");
+  BROWNIAN_MOTION_GEN();     
+  intervals_t = [];               //intervalli per distribuzione tempo intermedio
+  intervals_n = [];               //intervalli per distribuzione tempo finale
+  currentPathNumber = 0;
+  avgAtLastTime = 0;              //media della variata al tempo n
+  ssAtLastTime = 0;               //somma quadrati della variata al tempo n
+  ctx.clearRect(0, 0, Graphic.width, Graphic.height);
+  allPaths = [];
+
+
+
+      //generazione sample paths
+      for (let s = 1; s <= numberOfSamplePaths; s++) {
+          const newPath = createSinglePath(s);
+          allPaths.push(newPath);
+          ctx.lineWidth = 1;
+          ctx.strokeStyle = forChart.randomColorCSS();      //forChart.randomColor();
+          ctx.stroke(newPath);
+      }
+
+      sovrapponiIstogrammi();
+      creaTaccheELegenda();
+  
+
+}
+
+function mainTask_3() {
+
+
+  console.log("mainTask_3");
+  BROWNIAN_MOTION_GEO();     //acquisizione nuove scelte
+  intervals_t = [];               //intervalli per distribuzione tempo intermedio
+  intervals_n = [];               //intervalli per distribuzione tempo finale
+  currentPathNumber = 0;
+  avgAtLastTime = 0;              //media della variata al tempo n
+  ssAtLastTime = 0;               //somma quadrati della variata al tempo n
+  ctx.clearRect(0, 0, Graphic.width, Graphic.height);
+  allPaths = [];
+
+
+
+      //generazione sample paths
+      for (let s = 1; s <= numberOfSamplePaths; s++) {
+          const newPath = createSinglePath(s);
+          allPaths.push(newPath);
+          ctx.lineWidth = 1;
+          ctx.strokeStyle = forChart.randomColorCSS();      //forChart.randomColor();
+          ctx.stroke(newPath);
+      }
+
+      sovrapponiIstogrammi();
+      creaTaccheELegenda();
+  
+
+}
+
+function mainTask_4() {
+
+  console.log("mainTask_4");
+  ORNSTEIN_UHLENBECK();     //acquisizione nuove scelte
+  intervals_t = [];               //intervalli per distribuzione tempo intermedio
+  intervals_n = [];               //intervalli per distribuzione tempo finale
+  currentPathNumber = 0;
+  avgAtLastTime = 0;              //media della variata al tempo n
+  ssAtLastTime = 0;               //somma quadrati della variata al tempo n
+  ctx.clearRect(0, 0, Graphic.width, Graphic.height);
+  allPaths = [];
+
+
+
+      //generazione sample paths
+      for (let s = 1; s <= numberOfSamplePaths; s++) {
+          const newPath = createSinglePath(s);
+          allPaths.push(newPath);
+          ctx.lineWidth = 1;
+          ctx.strokeStyle = forChart.randomColorCSS();      //forChart.randomColor();
+          ctx.stroke(newPath);
+      }
+
+      sovrapponiIstogrammi();
+      creaTaccheELegenda();
+  
+
+}
+
 function sovrapponiIstogrammi() {
 
     //rettangolo contenitore istogramma
     const rettangoloIstogramma_t = new rectangular(for2d.transformX(timeForHistogram_t, 0, n, rectChart.x, rectChart.width), rectChart.y, 150, rectChart.height);
     const rettangoloIstogramma_n = new rectangular(for2d.transformX(timeForHistogram_n, 0, n, rectChart.x, rectChart.width), rectChart.y, 150, rectChart.height);
-    rettangoloIstogramma_t.draw_rectangular(ctx, "rgba(100,100,250,0.5)", 2, [1, 1]);
-    rettangoloIstogramma_n.draw_rectangular(ctx, "rgba(250,100,150,0.5)", 2, [1, 1]);
+
 
     //istogrammi
     forChart.verticalHistoFromIntervals(ctx, intervals_t, myVariate_MinView, myVariate_MaxView - myVariate_MinView, rettangoloIstogramma_t, "Green", 1, "Green");
@@ -256,7 +422,7 @@ function createSinglePath(s) {
     for (let t = 1; t <= n; t++) {
 
         sumOfJumps = mul ? sumOfJumps * myRandomJump(sumOfJumps) : sumOfJumps + myRandomJump(sumOfJumps);
-        console.log(sumOfJumps);
+
         let myProcessValue = myVariate(sumOfJumps, t);
 
         //raccolta valori per istogramma
@@ -290,40 +456,61 @@ function creaTaccheELegenda() {
     rectChart.draw_rectangular(ctx, "maroon", 2, []);
 
     //label riferimenti numerici range, media, sigma della variata
-    ctx.font = "11px Verdana";
-    ctx.fillStyle = "black";
-    ctx.fillText(myVariate_MaxView.toFixed(1), rectChart.right() + 10, rectChart.y - 7);
-    ctx.fillText(myVariate_MinView.toFixed(1), rectChart.right() + 10, rectChart.bottom() - 7);
-    ctx.fillStyle = "black";
-    ctx.fillStyle = "black";
-    ctx.fillText("",rectChart.x + 100, rectChart.y + 15);
 
     //tacche tempi/trials e tempi
 
-    ctx.beginPath();
 
-    if (representAsScalingLimit) {      //scaling limit: 0 -- 1
+
+
+
+
+
+    // Draw horizontal grid lines
+    ctx.beginPath();
+    ctx.strokeStyle = "lightgray";
+
+    for (let v = myVariate_MinView; v <= myVariate_MaxView; v += myProcessValue_Range / 60) {
+        let ordinata = for2d.transformY(v, myVariate_MinView, myProcessValue_Range, rectChart.y, rectChart.height);
+        ctx.moveTo(rectChart.left(), ordinata);
+        ctx.lineTo(rectChart.right(), ordinata);
+    }
+    ctx.stroke();
+
+    // Draw vertical grid lines
+    ctx.beginPath();
+    ctx.strokeStyle = "lightgray";
+    ctx.setLineDash([5, 3]);
+    
+
+    ctx.stroke();
+
+    // Reset line dash and color
+    ctx.setLineDash([]);
+    ctx.strokeStyle = "black";
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         ctx.fillStyle = "black";
-        ctx.strokeStyle = "black";
+
         for (let t = 0; t <= 1; t += 0.1) {
             let ascissa_t = for2d.transformX(t, 0, 1, rectChart.x, rectChart.width);
-            ctx.moveTo(ascissa_t, rectChart.bottom() - 3);
-            ctx.lineTo(ascissa_t, rectChart.bottom() + 3);
             ctx.fillText(t.toFixed(1).toString(), ascissa_t - 5, rectChart.bottom() + 15);
         }
 
-    } else {
 
-        ctx.fillStyle = "black";
-        ctx.strokeStyle = "black";
-        const step = 10 ** Math.round(Math.log10(n) - 1);
-        for (let t = 0; t <= n; t += step) {
-            let ascissa_t = for2d.transformX(t, 0, n, rectChart.x, rectChart.width);
-            ctx.moveTo(ascissa_t, rectChart.bottom() - 3);
-            ctx.lineTo(ascissa_t, rectChart.bottom() + 3);
-            ctx.fillText(t.toFixed(1).toString(), ascissa_t - 5, rectChart.bottom() + 15);
-        }
-    }
     ctx.stroke();
 
 }

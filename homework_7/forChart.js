@@ -42,11 +42,12 @@ class forChart {
   
       ctx.rect(rectInterval.x, rectInterval.y, rectInterval.width, rectInterval.height);
       const gradient = ctx.createLinearGradient(rectInterval.x, rectInterval.y, rectInterval.x, rectInterval.y + rectInterval.height);
-      gradient.addColorStop(0, 'blue');
+      gradient.addColorStop(0, 'white');
       gradient.addColorStop(0.25, fillStyle);
-      gradient.addColorStop(0.5, 'white');
       gradient.addColorStop(0.75, fillStyle);
-      gradient.addColorStop(1, 'blue');
+      gradient.addColorStop(1, 'white');
+
+      
       ctx.fillStyle = gradient;
       ctx.fillRect(rectInterval.x, rectInterval.y, rectInterval.width, rectInterval.height);
 
